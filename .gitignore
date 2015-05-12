@@ -1,0 +1,6 @@
+*.pyc
+*.pyo
+*.log
+/.idea/
+/spider/.idea/
+/spider_movie/.idea/
