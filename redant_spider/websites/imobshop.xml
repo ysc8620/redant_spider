@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  | Scrapy 开源网络爬虫
+  | author: ysc8620@163.com
+  | blog: http://blog.sina.com.cn/leshengchang
+  | qq: 372613912
+  | time: 2015-02-28 09:49
+-->
+<beans>
+	<!--
+	  | name:名称
+	  | url:种子链接
+	  | reqDelay:{n}s|{n}m|{n}h|n每次请求之前延缓时间
+	  | enable:0|1是否开启本网站的抓取
+	  | charset:网站字符集
+	  | schedule:调度时间，每隔多长时间重新从种子链接抓取
+	  | thread:分配给本网站爬虫的线程数
+	  | waitQueue:当任务队列空的时候爬虫等待多长时间再索取任务
+	  | is_read_url 是否读取网站已有链接 方便去重
+	-->
+	<site name="imobshop" country="Singapore" website_id="76"  xpath="base_parser" url="imobshop.sg" reqDelay="0.1s" enable="1" charset="utf-8" schedule="1h" thread="1" waitQueue="5s">
+		<!--
+		  | HTTP Header
+		<headers>
+			<header name="Referer" value="http://www.straitsdeal.com/deals/" />
+		</headers>-->
+		<!--
+		  | HTTP Cookie
+		<cookies>
+			<cookie name="" value="" host="" path="" />
+		</cookies>-->
+        <!--
+        !settings-->
+        <settings>
+            <setting name="xx" />
+        </settings>
+        <startUrls>
+            <!--<url url="https://www.imobshop.sg/tech/huawei-g730-black-white" />-->
+            <url url="https://www.imobshop.sg" />
+            <url url="https://www.imobshop.sg/fun" />
+            <url url="https://www.imobshop.sg/fun/indoor" />
+            <url url="https://www.imobshop.sg/fun/outdoor" />
+            <url url="https://www.imobshop.sg/tech" />
+            <url url="https://www.imobshop.sg/tech/computer-accessories" />
+            <url url="https://www.imobshop.sg/tech/camera-accessories" />
+            <url url="https://www.imobshop.sg/tech/mobile-accessories" />
+            <url url="https://www.imobshop.sg/food" />
+            <url url="https://www.imobshop.sg/travel" />
+            <url url="https://www.imobshop.sg/travel/tickets" />
+            <url url="https://www.imobshop.sg/travel/travelaccessories" />
+            <url url="https://www.imobshop.sg/home" />
+            <url url="https://www.imobshop.sg/home/appliances" />
+            <url url="https://www.imobshop.sg/home/household" />
+            <url url="https://www.imobshop.sg/family" />
+            <url url="https://www.imobshop.sg/fashion" />
+            <url url="https://www.imobshop.sg/fashion/watches" />
+            <url url="https://www.imobshop.sg/fashion/ladies" />
+            <url url="https://www.imobshop.sg/fashion/bags-and-wallets" />
+            <url url="https://www.imobshop.sg/fashion/men-s" />
+        </startUrls>
+		<!--
+		  | 进入任务队列的URL规则
+		  | policy:多个rule的策略，暂时只实现了and，未来会有or
+		-->
+		<queueRules>
+			<!--
+			  | 规则
+			  | type:规则类型，包括 regex | equal | start | end | contains 所有规则可以在前面添加 "!" 表示取反
+			  | value:值
+			-->
+            <rule rule="https://www.imobshop.sg/$" deny=".*?(model=list|dir=)" />
+            <rule rule="https://www.imobshop.sg/(fun|tech|wellness|food|tavel|home|family|fashion)(/(indoo|outdoo|compute-accessoies|camea-accessoies|mobile-accessoies|skin-cae|cosmetics|accessoies|beauty-sevices|tickets|tavelaccessoies|appliances|watches|household|bags-and-wallets|ladies|men-s))?(\?p=\d+)?$" deny=".*?(model=list|dir=)" />
+            <rule rule="https://www.imobshop.sg/(fun|tech|wellness|tavel|home|fashion)(/indoo|outdoo|compute-accessoies|camea-accessoies|mobile-accessoies|skin-cae|cosmetics|accessoies|beauty-sevices|tickets|tavelaccessoies|appliances|watches|household|bags-and-wallets|ladies|men-s)?/[\w\-]+$"  callback="parse_item" />
+            <rule rule="https://www.imobshop.sg/(family|food)/[\w\-]+$" callback="parse_item" />
+            <rule rule="https://www.imobshop.sg/[\w\-]+$" callback="parse_item" />
+            <!--<url url="https://www.imobshop.sg/tech/huawei-g730-black-white"  callback="parse_item" />-->
+		</queueRules>
+		<!--
+		  | 抓取目标
+		-->
+		<targets>
+			<!--
+			  | name:目标表名
+			-->
+			<target name="deal">
+                 <!--
+                !预处理数据-->
+                <beforehand>
+
+                </beforehand>
+                <!---
+                | 判断是否继续跟进目标进入 parse item
+                -->
+				<isFollow>
+                    <parsers>
+					    <parser xpath="//input[@name='product']/@value" />
+                    </parsers>
+				</isFollow>
+
+				<!--
+				  | 目标网页的数据模型
+				-->
+				<model>
+                    <!--
+                    !需要入库的字段
+                    !对应的值名
+                    -->
+                    <fields>
+                        <field name="name" val="name" def=""  />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                        <field name="name" />
+                    </fields>
+					<!--
+					  | 属性的配置
+					  | name:属性名称
+					  | parser:针对该属性的解析规则
+					-->
+					<field name="name" isTrim="1">
+						<!--
+						  | xpath: XPath规则，如果目标页面是XML，则可以使用2.0语法，否则HTML的话暂时只能1.0
+						  | attribute:当使用XPath解析后的内容不是文本而是一个Node节点对象的时候，可以给定一个属性名获取其属性值例如<img src="" />
+						  | regex:当使用XPath（包括attribute）规则获取到的文本内容不满足需求时，可以继续设置regex正则表达式进行解析
+						  | exp:当使用XPath获取的文本(如果获取的不是文本则会先执行exp而不是regex否则先执行regex)不满足需求时，可以继续这是exp表达式进行解析
+						  |     exp表达式有几个内置对象和方法:
+						-->
+						<parsers>
+							<parser xpath="//div[@class='product-name']/h1/text()" />
+						</parsers>
+					</field>
+                    <field name="cate">
+					</field>
+					<field name="countBought" def="0">
+					</field>
+                    <field name="website_id" def="76">
+                    </field>
+					<field name="site_id" def="0">
+						<parsers>
+							<parser xpath="//input[@name='product']/@value" />
+						</parsers>
+					</field>
+					<field name="price" def="0">
+						<parsers>
+							<parser xpath="//p[@class='special-price']//span[@class='price']/text()" />
+                            <parser rep="_this.replace('S$','')"/>
+						</parsers>
+					</field>
+
+                    <field name="price" def="0">
+						<parsers>
+							<parser xpath="//span[@class='regular-price']//span[@class='price']/text()" />
+                            <parser rep="_this.replace('S$','')"/>
+						</parsers>
+					</field>
+
+					<field name="originalPrice"  def="0">
+						<parsers>
+							<parser xpath="//p[@class='old-price']//span[@class='price']/text()"/>
+							<parser rep="_this.replace('S$','')"/>
+						</parsers>
+					</field>
+					<field name="oldImg" isArray="1">
+						<parsers>
+							<parser xpath="//div[contains(@class,'default-views')]//li/a/@href" />
+						</parsers>
+					</field>
+					<field name="ExpiryTime" def="0">
+                        <parsers>
+                            <parser rep="int(_this)+time.time()+864000" />
+                        </parsers>
+					</field>
+					<field name="highlight" def="" isTrim="1">
+					</field>
+					<field name="condition" def="" isTrim="1">
+					</field>
+					<field name="description" isTrim="1">
+						<parsers>
+							<parser xpath="//div[@id='product_tabs_description_contents']" />
+                            <parser rep="_Attrs.xml(_this).rm('class').rm('style').run()" />
+                            <parser rep="_Tags.xml(_this).rm('div').empty().run()" />
+						</parsers>
+					</field>
+					<field name="postCode">
+						<parsers>
+							<parser xpath="//div[@id='product_tabs_additional_contents']//th[contains(.//text(), 'Seller Postal Code')]/ancestor::tr/td/text()" regex="(?&lt;=(\D{1,255}))\d{6}" />
+						</parsers>
+					</field>
+					<field name="address" isTrim="1">
+						<parsers>
+							<parser xpath="//div[@id='product_tabs_additional_contents']//th[contains(.//text(), 'Seller Address')]/ancestor::tr/td/text()" />
+						</parsers>
+					</field>
+
+					<field name="merchant" isTrim="1">
+						<parsers>
+							<parser xpath="//div[@id='product_tabs_additional_contents']//th[contains(.//text(), 'Seller Name')]/ancestor::tr/td/text()" />
+						</parsers>
+					</field>
+					<field name="phone">
+						<parsers>
+							<parser xpath="//div[@id='product_tabs_additional_contents']//th[contains(.//text(), 'Seller Phone')]/ancestor::tr/td/text()" regex="(?&lt;=Tel:( )?)\d{4}[ -]?\d{4}" />
+						</parsers>
+					</field>
+				</model>
+                <!--
+                !判断是否存在 重复数据处理
+                -->
+				<existItem>
+                    <exec>
+                        <sql sql="SELECT id, name FROM le_goods WHERE site_id=%s AND website_id=%s"
+                             param="site_id, website_id" />
+                    </exec>
+				</existItem>
+                <!--
+                ! 入库前预处理数据
+                img = small_pic = big_pic = old_pic
+                -->
+                <beforeInsert>
+                    <field name="img">
+						<parsers>
+							<parser rep="/uploaded/' + item['images'][0].replace( 'original','thumb400')" />
+						</parsers>
+					</field>
+                    <field name="small_pic">
+						<parsers>
+							<parser rep="(/uploaded/+'|/uploaded/'.join(item['images']).replace('original','thumb100')" />
+						</parsers>
+					</field>
+                    <field name="big_pic">
+						<parsers>
+							<parser rep="/uploaded/+'|/uploaded/'.join(item['images'])" />
+						</parsers>
+					</field>
+                    <field name="old_pic">
+						<parsers>
+							<parser rep="/uploaded/+'|/uploaded/'.join(item['images'])" />
+						</parsers>
+					</field>
+                </beforeInsert>
+			</target>
+		</targets>
+		<!--
+		  | 插件
+		-->
+		<plugins>
+			<!--
+			  | enable:是否开启
+			  | name:插件名
+			  | version:插件版本
+			  | desc:插件描述
+			-->
+			<plugin enable="1" name="spider_plugin" version="0.0.1" desc="这是一个官方实现的默认插件，实现了所有扩展点。">
+				<providers>
+					<provider>
+						<orgnization name="深圳优扣科技有限公司" website="" desc="致力于打造一流的社交分享购物社区!">
+							<author name="ShengYue" website="http://blog.sina.com.cn/leshengchang" email="ysc8620@163.com" weibo="http://weibo.com/aisls" desc="" />
+						</orgnization>
+					</provider>
+				</providers>
+			</plugin>
+		</plugins>
+	</site>
+</beans>
