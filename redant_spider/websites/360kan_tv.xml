@@ -42,13 +42,6 @@
             <url url="http://www.360kan.com/dianshi/neidi.html" />
             <url url="http://www.360kan.com/dianshi/meiju.html" />
             <url url="http://www.360kan.com/dianshi/list.php" />
-            <!--//电影部分-->
-            <url url="http://www.360kan.com/dianying/index.html" />
-            <url url="http://www.360kan.com/dianying/list.php" />
-
-            <!--//综艺-->
-            <url url="http://www.360kan.com/zongyi/index.html" />
-            <url url="http://www.360kan.com/zongyi/list.php" />
         </startUrls>
 		<!--
 		  | 进入任务队列的URL规则
@@ -62,12 +55,7 @@
 			-->
             <rule rule="http://www.360kan.com/$"/>
             <rule rule="http://www.360kan.com/dianshi/list.php?pageno=\d+$" />
-            <rule rule="http://www.360kan.com/dianshi/list.php?pageno=\d+$" />
-            <rule rule="http://www.360kan.com/zongyi/list.php?pageno=\d+$" />
-
             <rule rule="http://www.360kan.com/tv/(\w+).html+$" callback="parse_item" />
-            <rule rule="http://www.360kan.com/m/(\w+).html+$" callback="parse_item" />
-            <rule rule="http://www.360kan.com/va/(\w+).html+$" callback="parse_item" />
 		</queueRules>
 		<!--
 		  | 抓取目标
