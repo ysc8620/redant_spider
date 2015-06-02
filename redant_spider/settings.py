@@ -28,11 +28,7 @@ ITEM_PIPELINES = {
 # 图片下载保存目录
 IMAGES_STORE = '/wwwroot/dir/uploaded'
 #缩略图规格及目录名称
-IMAGES_THUMBS = {
-    'thumb100': (100, 100),
-    'thumb250': (250, 250),
-    'thumb400': (400, 300),
-}
+IMAGES_THUMBS = {}
 # 限速 RANDOMIZE_DOWNLOAD_DELAY 结合随机（0.5 ~ 1.5）* 0.8
 DOWNLOAD_DELAY = 0.8
 

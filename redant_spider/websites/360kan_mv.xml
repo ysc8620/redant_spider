@@ -36,27 +36,19 @@
         </settings>
         <startUrls>
             <!--<url url="https://www.imobshop.sg/tech/huawei-g730-black-white" />-->
-            <url url="https://www.imobshop.sg" />
-            <url url="https://www.imobshop.sg/fun" />
-            <url url="https://www.imobshop.sg/fun/indoor" />
-            <url url="https://www.imobshop.sg/fun/outdoor" />
-            <url url="https://www.imobshop.sg/tech" />
-            <url url="https://www.imobshop.sg/tech/computer-accessories" />
-            <url url="https://www.imobshop.sg/tech/camera-accessories" />
-            <url url="https://www.imobshop.sg/tech/mobile-accessories" />
-            <url url="https://www.imobshop.sg/food" />
-            <url url="https://www.imobshop.sg/travel" />
-            <url url="https://www.imobshop.sg/travel/tickets" />
-            <url url="https://www.imobshop.sg/travel/travelaccessories" />
-            <url url="https://www.imobshop.sg/home" />
-            <url url="https://www.imobshop.sg/home/appliances" />
-            <url url="https://www.imobshop.sg/home/household" />
-            <url url="https://www.imobshop.sg/family" />
-            <url url="https://www.imobshop.sg/fashion" />
-            <url url="https://www.imobshop.sg/fashion/watches" />
-            <url url="https://www.imobshop.sg/fashion/ladies" />
-            <url url="https://www.imobshop.sg/fashion/bags-and-wallets" />
-            <url url="https://www.imobshop.sg/fashion/men-s" />
+            <url url="http://www.360kan.com/" />
+            <!--//电视剧部分-->
+            <url url="http://www.360kan.com/dianshi/index.html" />
+            <url url="http://www.360kan.com/dianshi/neidi.html" />
+            <url url="http://www.360kan.com/dianshi/meiju.html" />
+            <url url="http://www.360kan.com/dianshi/list.php" />
+            <!--//电影部分-->
+            <url url="http://www.360kan.com/dianying/index.html" />
+            <url url="http://www.360kan.com/dianying/list.php" />
+
+            <!--//综艺-->
+            <url url="http://www.360kan.com/zongyi/index.html" />
+            <url url="http://www.360kan.com/zongyi/list.php" />
         </startUrls>
 		<!--
 		  | 进入任务队列的URL规则
@@ -68,12 +60,14 @@
 			  | type:规则类型，包括 regex | equal | start | end | contains 所有规则可以在前面添加 "!" 表示取反
 			  | value:值
 			-->
-            <rule rule="https://www.imobshop.sg/$" deny=".*?(model=list|dir=)" />
-            <rule rule="https://www.imobshop.sg/(fun|tech|wellness|food|tavel|home|family|fashion)(/(indoo|outdoo|compute-accessoies|camea-accessoies|mobile-accessoies|skin-cae|cosmetics|accessoies|beauty-sevices|tickets|tavelaccessoies|appliances|watches|household|bags-and-wallets|ladies|men-s))?(\?p=\d+)?$" deny=".*?(model=list|dir=)" />
-            <rule rule="https://www.imobshop.sg/(fun|tech|wellness|tavel|home|fashion)(/indoo|outdoo|compute-accessoies|camea-accessoies|mobile-accessoies|skin-cae|cosmetics|accessoies|beauty-sevices|tickets|tavelaccessoies|appliances|watches|household|bags-and-wallets|ladies|men-s)?/[\w\-]+$"  callback="parse_item" />
-            <rule rule="https://www.imobshop.sg/(family|food)/[\w\-]+$" callback="parse_item" />
-            <rule rule="https://www.imobshop.sg/[\w\-]+$" callback="parse_item" />
-            <!--<url url="https://www.imobshop.sg/tech/huawei-g730-black-white"  callback="parse_item" />-->
+            <rule rule="http://www.360kan.com/$"/>
+            <rule rule="http://www.360kan.com/dianshi/list.php?pageno=\d+$" />
+            <rule rule="http://www.360kan.com/dianshi/list.php?pageno=\d+$" />
+            <rule rule="http://www.360kan.com/zongyi/list.php?pageno=\d+$" />
+
+            <rule rule="http://www.360kan.com/tv/(\w+).html+$" callback="parse_item" />
+            <rule rule="http://www.360kan.com/m/(\w+).html+$" callback="parse_item" />
+            <rule rule="http://www.360kan.com/va/(\w+).html+$" callback="parse_item" />
 		</queueRules>
 		<!--
 		  | 抓取目标
@@ -91,11 +85,18 @@
                 <!---
                 | 判断是否继续跟进目标进入 parse item
                 -->
+                <!--
 				<isFollow>
                     <parsers>
 					    <parser xpath="//input[@name='product']/@value" />
                     </parsers>
-				</isFollow>
+				</isFollow>-->
+
+                <isExist name="id">
+                    <parsers>
+					    <parser xpath="//input[@name='product']/@value" />
+                    </parsers>
+				</isExist>
 
 				<!--
 				  | 目标网页的数据模型
@@ -106,16 +107,7 @@
                     !对应的值名
                     -->
                     <fields>
-                        <field name="name" val="name" def=""  />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
-                        <field name="name" />
+                        <field name="title,pic,cid,class,area,year,actor,director,gold,golder,is_finish,film_time,url,jump_url,play_type,status,addtime,uptime" />
                     </fields>
 					<!--
 					  | 属性的配置

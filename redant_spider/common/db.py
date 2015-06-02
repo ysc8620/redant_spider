@@ -103,6 +103,8 @@ class DB(object):
 #                              db=Config.DBNAME,use_unicode=False,charset=Config.DBCHAR,cursorclass=DictCursor)
         self._conn = DB.__getConn()
         self._cursor = self._conn.cursor(cursorclass = MySQLdb . cursors . DictCursor)
+        #self._cursor = self.conn.cursor(cursorclass = MySQLdb . cursors . DictCursor)
+        self._cursor.execute('SET NAMES utf8')
 
     @staticmethod
     def init():

@@ -13,7 +13,7 @@ import time
 from redant_spider.common.db import DB
 from redant_spider.common.base import *
 from redant_spider.common.items import *
-from redant_spider.common.SimpleClassifier import SimpleClassifier
+from redant_spider.common.expand import *
 
 #
 '''
@@ -32,55 +32,31 @@ class BasePipeline(object):
    #
     '''
     def process_item(self, item, spider):
-        Classifier = SimpleClassifier()
 
         if type(item) != BaseItem:
             return item
 
-        if item['is_exist_item'] == False:
+        if item['rowItem']['is_exist_item'] == False:
             return item
-
-        img = small_pic = big_pic = old_pic = ''
-        if len(item['images']) > 0 :
-            img = '/uploaded/' + item['images'][0].replace( 'original','thumb400')
-            for src in item['images']:
-                small_pic = small_pic +  '/uploaded/'+ src.replace('original', 'thumb100') + '|'
-                big_pic = big_pic +  '/uploaded/'+ src
-            small_pic = small_pic.strip('|')
-            big_pic = big_pic.strip('|')
-
-        if len(item['oldImg']) > 0:
-            old_pic = '|'.join(item['oldImg'])
-
 
         for i in item:
             if type(item[i]) == unicode or type(item[i]) == str:
-                item[i] = item[i].encode('utf-8')
-        if item['goods']:
-            goods_cate_id = 0
-            # 更新cate_id
-            if item['goods']['cate_id'] < 1:
-                classlist = Classifier.findCateAndTags(item['name'], 4)
-                if classlist['cate']:
-                    self.add_cate_goods_index(classlist['cate'], item['goods']['goods_id'])
-                    for cate_id in classlist['cates']:
-                        self.add_cate_goods_index(cate_id, item['goods']['goods_id'])
-
-            else:
-                goods_cate_id = item['goods']['cate_id']
-            if item['goods']['price'] != item['price'] or item['goods']['original_price'] != item['originalPrice'] or item['goods']['name'] != item['name']:
-                DB.init().update("UPDATE le_goods SET isshow=1,name=%s,price=%s,original_price=%s, uptime=%s,expiry_time=%s,site_id=%s,cate_id=%s WHERE goods_id=%s",[item['name'],item['price'],item['originalPrice'],int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])
-            else:
-                DB.init().update("UPDATE le_goods SET isshow=1,uptime=%s,expiry_time=%s,site_id=%s WHERE goods_id=%s",[int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])
-            DB.init().end()
-        else:
-            classlist = Classifier.findCateAndTags(item['name'], 4)
-            goods_cate_id = classlist['cate']
-            goods_id = DB.init().insertOne("INSERT INTO le_goods SET `uid`=%s,`site_id`=%s,`img`=%s, `deal_img`=%s,`display_order`=%s,`desc_bigpic`=%s, `oldimg`=%s, `small_pic`=%s,`desc_oldimg`=%s,`bigpic`=%s, `name`=%s, `seo_title`=%s, `url`=%s, `currency`=%s,`original_price`=%s, `price`=%s, `cate_id`=%s, `source`=%s, `addtime`=%s,`expiry_time`=%s, `uptime`=%s, `website_id`=%s,`isdeal`=%s,`ispublish`=%s,`isshow`=%s,`highlight`=%s, `conditions`=%s, `description`=%s, `merchant`=%s,`phone`=%s, `address`=%s,`city`=%s, `country`=%s, `post`=%s",[1,item['site_id'], img,img,0,'',old_pic,small_pic,'',big_pic,item['name'],get_seo_title(item['name']),item['url'],'SGD',item['originalPrice'],item['price'], goods_cate_id,'reptile',time.time(),item['ExpiryTime'],time.time(),item['website_id'],1,1,1,item['highlight'],item['condition'],item['description'],item['merchant'],item['phone'],item['address'],1,1,item['postCode']])
-            DB.init().end()
-            if classlist['cate'] > 0:
-                self.add_cate_goods_index(classlist['cate'],goods_id)
-                for cate_id in classlist['cates']:
-                    self.add_cate_goods_index(cate_id, goods_id)
+                 item[i] = item[i].encode('utf-8')
+        # if item['rowItem']:
+        #     if item['goods']['price'] != item['price'] or item['goods']['original_price'] != item['originalPrice'] or item['goods']['name'] != item['name']:
+        #         DB.init().update("UPDATE le_goods SET isshow=1,name=%s,price=%s,original_price=%s, uptime=%s,expiry_time=%s,site_id=%s,cate_id=%s WHERE goods_id=%s",[item['name'],item['price'],item['originalPrice'],int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])
+        #     else:
+        #         DB.init().update("UPDATE le_goods SET isshow=1,uptime=%s,expiry_time=%s,site_id=%s WHERE goods_id=%s",[int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])
+        #     DB.init().end()
+        # else:
+        fields_id = item['rowItem']['sqlfields'].split(',')
+        sql = "INSERT INTO js_vods SET "
+        data = []
+        for i in fields_id:
+            sql += "i=%s ,";
+            data.append(item['rowItem'][i])
+        sql = sql.strip(',')
+        DB.init().insertOne('"'+sql+'"',data)
+        #DB.init().end()
         return item
 

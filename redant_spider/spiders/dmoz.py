@@ -35,9 +35,7 @@ class DmozSpider(CrawlSpider):
     xpath_object = None
     # 匹配Item
 
-
     def __init__(self, name=None,r=None, *a, **kw):
-
         # 爬虫起始时间
         self.start_time = int(time.time())
         if name == None:
@@ -79,7 +77,6 @@ class DmozSpider(CrawlSpider):
         # 设置运行域名
         self.allowed_domains.append(self.xml.xpath("//site/@url").extract()[0].strip())
         self.website_url = self.xml.xpath("//site/@url").extract()[0].strip()
-
 
         self.website_id = self.xml.xpath("//site/@website_id").extract()[0].strip()
 
@@ -173,7 +170,7 @@ class DmozSpider(CrawlSpider):
             yield self.make_requests_from_url(url)
 
     def parse(self, response):
-        if self.xpath_model == 'my_ensogo' or self.xpath_model == 'xml_parser':
+        if self.xpath_model == 'xml_parser':
             return self.xpath_object.run(spider=self, response=response, xml=self.xml)
         else:
             return self._parse_response(response, self.parse_start_url, cb_kwargs={}, follow=True)
