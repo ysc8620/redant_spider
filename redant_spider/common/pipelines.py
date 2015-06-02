@@ -36,8 +36,9 @@ class BasePipeline(object):
         if type(item) != BaseItem:
             return item
 
-        if item['rowItem']['is_exist_item'] == False:
-            return item
+        if item['rowItem'].has_key('is_exist_item'):
+            if item['rowItem']['is_exist_item'] == False:
+                return item
 
         for i in item:
             if type(item[i]) == unicode or type(item[i]) == str:

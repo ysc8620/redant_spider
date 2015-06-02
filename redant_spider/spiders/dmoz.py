@@ -39,11 +39,11 @@ class DmozSpider(CrawlSpider):
         # 爬虫起始时间
         self.start_time = int(time.time())
         if name == None:
-            logs(time.strftime("------%Y-%d-%d %H:%M:%S ") +' Spider Name No Exits.')
+            logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' Spider Name No Exits.')
             exit(0)
 
         #new_name = sys.argv[3].replace('n=','')
-        infile = os.getcwd()+r'/websites/' + name
+        infile = os.getcwd()+r'/redant_spider/websites/' + name
         print infile
         if os.path.exists(infile):
             logs('Spider '+ name + ' Start Read.')
@@ -61,7 +61,7 @@ class DmozSpider(CrawlSpider):
         enable = self.xml.xpath("//site/@enable").extract()[0].strip()
         if enable != '1':
             if r == None:
-                logs(time.strftime("------%Y-%d-%d %H:%M:%S ") +' ' + name +' No Enable.')
+                logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' ' + name +' No Enable.')
                 exit(0)
 
         # 设置匹配模式
@@ -71,7 +71,7 @@ class DmozSpider(CrawlSpider):
         try:
             self.xpath_object = eval(self.xpath_model+'()')
         except:
-            logs(time.strftime("------%Y-%d-%d %H:%M:%S ") +' xpath model not found.')
+            logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' xpath model not found.')
             exit(0)
 
         # 设置运行域名
@@ -126,7 +126,7 @@ class DmozSpider(CrawlSpider):
         if r == None:
             # 初始化redis
             redis = redisDB()
-            redis.flushSpider(name)
+            #redis.flushSpider(name)
 
         # 执行初始化
         super(DmozSpider, self).__init__(*a, **kw)

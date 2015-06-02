@@ -275,11 +275,12 @@ class parser:
                             print rep[0],_this
                             logs(time.strftime("------%Y-%m-%d %H:%M:%S") + rep[0]+ ' rep eval error.' + e.message)
                 item['rowItem'][name] = _this
-        if item['rowItem']['url'] == '':
+        if item['rowItem'].has_key('url') == False:
             item['rowItem']['url'] = self.url
 
-        if row == False and item['rowItem']['pic']:
-            item['image_urls'] = item['rowItem']['pic']
+        if row == False and item['rowItem'].has_key('pic'):
+            if item['rowItem']['pic']:
+                item['image_urls'] = item['rowItem']['pic']
 
         afterParser = xml.xpath("//afterParser/field")
 
@@ -315,12 +316,12 @@ class base_parser(parser):
                     if parser_htmls:
                         for parser_html in parser_htmls:
                             item = self.set_defalut(spider=spider, response=response, text=text)
-                            return self.parser_item(html_parser=parser_html,item=item,url=self.url,xml=xml)
+                            yield self.parser_item(html_parser=parser_html,item=item,url=self.url,xml=xml)
             else:
                 item = self.set_defalut(spider=spider, response=response, text=text)
-                return self.parser_item(html_parser=self.hs,item=item,url=self.url,xml=xml)
+                yield self.parser_item(html_parser=self.hs,item=item,url=self.url,xml=xml)
 
-class xml_parser(parser):
+class xml_parser(base_parser):
 
     def run(self, spider=None, response=None, xml=None, text=None):
         model_list = xml.xpath("//targets//model")
@@ -340,3 +341,21 @@ class xml_parser(parser):
                 yield self.parser_item(html_parser=self.hs,item=item,url=self.url,xml=xml)
 
 
+class test_parser(base_parser):
+
+    def run(self, spider=None, response=None, xml=None, text=None):
+        model_list = xml.xpath("//targets//model")
+        for model in model_list:
+            model_xpath = model.xpath("@xpath").extract()
+            model_is_array = model.xpath("@xpath").extract()
+            if model_is_array:
+                if model_xpath:
+                    item = self.set_defalut(spider=spider, response=response, text=text)
+                    parser_htmls = self.hs.xpath(model_xpath[0])
+                    if parser_htmls:
+                        for parser_html in parser_htmls:
+                            item = self.set_defalut(spider=spider, response=response, text=text)
+                            return self.parser_item(html_parser=parser_html,item=item,url=self.url,xml=xml)
+            else:
+                item = self.set_defalut(spider=spider, response=response, text=text)
+                return self.parser_item(html_parser=self.hs,item=item,url=self.url,xml=xml)
