@@ -188,32 +188,6 @@ class parser:
         if website_id:
             website_id = website_id[0].strip()
 
-        exist_name = xml.xpath("//targets//isExist/@name").extract()
-        exist_value = ''
-        row = False
-        if exist_name:
-            exist_name = exist_name[0].strip()
-            exist_list = xml.xpath("//targets//isExist/parser")
-
-            for exist in exist_list:
-                xpath = exist.xpath('@xpath').extract()
-                if xpath:
-                    exist_val = html_parser.xpath(xpath[0]).extract()
-                    if exist_val:
-                        exist_value = exist_val[0]
-                    continue
-                val = exist.xpath('@val').extract()
-                if val:
-                    try:
-                        exist_value = eval(val[0])
-                    except Exception, e:
-                        logs(time.strftime("------%Y-%m-%d %H:%M:%S-")  +val[0] +' eval error.')
-                        exit(0)
-                    continue
-            row = DB.init().getOne("SELECT id,site_id FROM js_vods WHERE website_id=%s AND "+exist_name+"=%s", [website_id,exist_value])
-            if row != False:
-                item['rowItem']['exits_item'] = row
-
         fields = xml.xpath("//targets//model//field")
         for field in fields:
             name = field.xpath("@name").extract()
@@ -283,6 +257,21 @@ class parser:
                 item['rowItem'][name] = _this
         if item['rowItem'].has_key('url') == False:
             item['rowItem']['url'] = self.url
+        bool = False
+        if item['rowItem'].has_key('site_id'):
+            if item['rowItem']['site_id']:
+                bool = True
+                row = DB.init().getOne("SELECT id,site_id FROM js_vods WHERE website_id=%s AND site_id=%s", [website_id,item['rowItem']['site_id']])
+                if row != False:
+                    item['rowItem']['exits_item'] = row
+
+        if bool == False and row == False:
+            if item['rowItem'].has_key('url'):
+                if item['rowItem']['url']:
+                    bool = True
+                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE website_id=%s AND url=%s", [website_id,item['rowItem']['url']])
+                    if row != False:
+                        item['rowItem']['exits_item'] = row
 
         if row == False and item['rowItem'].has_key('old_pic'):
             if item['rowItem']['old_pic']:
