@@ -24,9 +24,9 @@ class DmozSpider(CrawlSpider):
         Rule(LinkExtractor(  allow=r'http://www.360kan.com/$')),
         Rule(LinkExtractor(allow=r'/dianshi/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/dianshi/list.php?pageno=\d+$')),
+        Rule(LinkExtractor(allow=r'/dianshi/list.php?.+')),
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
-        Rule(LinkExtractor(allow=r'/tv/(\w+).html$'), callback='parse_item'),
+        #Rule(LinkExtractor(allow=r'/tv/(\w+).html$'), callback='parse_item'),
     )
 
     def __init__(self, *a, **kw):
@@ -37,9 +37,9 @@ class DmozSpider(CrawlSpider):
         super(CrawlSpider, self).__init__(*a, **kw)
         self._compile_rules()
 
-    def parse_item(self, response):
-        item = self.xpath_object.run(spider=self, response=response, xml=self.xml)
-        return item
+    # def parse_item(self, response):
+    #     item = self.xpath_object.run(spider=self, response=response, xml=self.xml)
+    #     return item
 
 if __name__ =='__main__':
     print type([])
