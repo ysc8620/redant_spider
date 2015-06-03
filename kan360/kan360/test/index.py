@@ -51,3 +51,5 @@ sql = sql.strip(',')
 for i in data:
     print type(i), i
 
+
+

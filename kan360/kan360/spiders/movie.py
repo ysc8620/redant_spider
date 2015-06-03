@@ -22,11 +22,10 @@ class DmozSpider(CrawlSpider):
     )
 
     rules = (
-
         Rule(LinkExtractor(  allow=r'http://www.360kan.com/$')),
         Rule(LinkExtractor(allow=r'/dianying/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/dianying/list.php.+', deny=r'rank=|act=')),
+        Rule(LinkExtractor(allow=r'/dianying/list.php\??(&?(cat=\w+|year=\w+|pageno=\d+|area=\w+|act=all)?){0,6}$')),
         Rule(LinkExtractor(allow=r'/dianying/top/.+')),
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
         Rule(LinkExtractor(allow=r'/m/(\w+).html$'), callback='parse_item'),

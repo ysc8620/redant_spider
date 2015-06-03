@@ -258,6 +258,7 @@ class parser:
         if item['rowItem'].has_key('url') == False:
             item['rowItem']['url'] = self.url
         bool = False
+        row = False
         if item['rowItem'].has_key('site_id'):
             if item['rowItem']['site_id']:
                 bool = True
