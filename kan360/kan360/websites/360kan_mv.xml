@@ -114,32 +114,37 @@
 						  |     exp表达式有几个内置对象和方法:
 						-->
 						<parsers>
-							<parser xpath="//span[@id='film_name']/text()" />
+							<parser xpath="//h1[@id='film_name']/text()" />
 						</parsers>
 					</field>
                     <!--主图-->
                     <field name="old_pic" def="">
                         <parsers>
-                            <parser xpath="//div[@class='v-poster']//img[@class='poster-cover']/@src" />
+                            <parser xpath="//div[@id='poster']//img[@id='film_poster']/@src" />
                         </parsers>
 					</field>
                     <!--站点对应编号-->
                     <field name="site_id" def="0">
                         <parsers>
-                            <parser xpath="//span[@id='film_name']/@data-movieid" />
+                            <parser xpath="//h1[@id='film_name']/@data-movieid" />
                         </parsers>
                     </field>
                     <!--分类编号-->
-                    <field name="cid_ids" def="2"></field>
+                    <field name="cid_ids" def="1"></field>
                     <!--分类-->
-					<field name="cid_name" def="电视剧">
+					<field name="cid_name" def="电影">
 					</field>
                     <!--类型编号-->
                     <field name="class_ids" def=""></field>
                     <!--类型-->
-                    <field name="class_name">
+                    <field name="class_name" isArray="1">
                         <parsers>
-                            <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(.//i/text(), '类型：')]/text()" />
+                            <parser xpath="//div[contains(@id,'cate_list')]//h2/text()" />
+                            <parser rep="'/'.join(_this)" />
+                            <parser rep="_this.replace(u'好看的','')" />
+                            <parser rep="_this.replace(u'电影','')" />
+                            <parser rep="_this.replace(u'热门专题推荐','')" />
+                            <parser rep="_this.strip('/')" />
                         </parsers>
                     </field>
                     <field name="website_id" def="1">
@@ -147,25 +152,26 @@
                     <!--地区-->
 					<field name="area" def="">
 						<parsers>
-                            <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(.//i/text(), '地区：')]/text()" />
+                            <parser xpath="//dl[@class='area']//dd/text()" />
                         </parsers>
 					</field>
                     <!--年代-->
                     <field name="year" def="">
 						<parsers>
-                            <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(.//i/text(), '年代：')]/text()" />
+                            <parser xpath="//dl[@class='year']//dd/text()" />
                         </parsers>
 					</field>
                     <!--主演-->
 					<field name="actor" isArray="1">
 						<parsers>
-                            <parser xpath="///p[@id='actors']//a/text()" />
+                            <parser xpath="///dl[@id='actor']//dd//a/text()" />
                             <parser rep="'/'.join(_this)" />
                         </parsers>
 					</field>
-					<field name="director" def="">
+					<field name="director" isArray="1">
 						<parsers>
-                            <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(.//i/text(), '导演：')]/text()" />
+                            <parser xpath="///dl[@id='director']//dd//a/text()" />
+                            <parser rep="'/'.join(_this)" />
                         </parsers>
 					</field>
 
@@ -180,41 +186,43 @@
                             <parser xpath="//div[@class='aggregate-rating']//div[@class='rating-count']/text()" re="\d+" />
                         </parsers>
 					</field>
-                    <field name="is_finish" def="0">
+                    <field name="is_vip" def="0">
                         <parsers>
                             <parser xpath="//a[@id='tv_poster']//i[@class='updating']/@class" />
                             <parser rep="'1' if _this==u'updating' else '0'" />
                         </parsers>
                     </field>
-                    <field name="update_remark" def="">
+                    <field name="update_remark" isArray="1">
                         <parsers>
-                            <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(@class, 'episode')]" />
-                            <parser rep="_Tags.xml(_this).rm('i').empty().run()" />
-                            <parser re="_this.replace('剧集：','')" />
+                            <parser xpath="//dl[@id='genre']//a/text()" />
+                            <parser rep="'/'.join(_this)" />
                         </parsers>
                     </field>
 
-                    <field name="film_time" def="0"></field>
-                    <field name="url">
+                    <field name="film_time" def="">
+                        <parsers>
+                            <parser xpath="//dl[@class='duration']//dd/text()" />
+                        </parsers>
+                    </field>
+                    <field name="url" def="" >
                         <parsers>
                             <parser rep="url" />
                         </parsers>
                     </field>
                     <field name="jump_url" isArray="1">
                         <parsers>
-                            <parser xpath="//div[@id='tv-play']//div[@class='content']//div[contains(@class,'full')]" />
+                            <parser xpath="//div[contains(@class,'resources')]//li//a[@playtype='dianying']" />
                         </parsers>
                     </field>
                     <field name="play_type" isArray="1" >
                         <parsers>
-                            <parser xpath="//div[@id='tv-play']/ul[@id='supplies']/li/@site" />
+                            <parser xpath="//div[contains(@class,'resources')]//li//a[@playtype='dianying']/@sitename" />
                             <parser rep="'$'.join(_this)" />
                         </parsers>
                     </field>
 					<field name="content" isTrim="1">
 						<parsers>
-							<parser xpath="//p[@class='intro']//span[@class='text']" />
-                            <parser rep="_Attrs.xml(_this).rm('class').rm('style').run()" />
+							<parser xpath="//div[@class='mod desc']//p[@class='less']" />
                             <parser rep="_Tags.xml(_this).rm('a').empty().run()" />
 						</parsers>
 					</field>
@@ -235,7 +243,7 @@
                 <afterParser>
                     <field name="jump_url">
                         <parsers>
-                            <parser rep="parse_jump_url(item['rowItem']['jump_url'])" />
+                            <parser rep="parse_mv_jump_url(item['rowItem']['jump_url'])" />
                         </parsers>
                     </field>
                 </afterParser>

@@ -166,7 +166,7 @@ class parser:
                     if url_id:
                         id = url_id[0].strip()
                     else:
-                        item['is_exist_item'] = False
+                        item['rowItem']['is_exist_item'] = False
                         return item
                     continue
 
@@ -179,7 +179,7 @@ class parser:
                     if url_id:
                         id = url_id[0].strip()
                     else:
-                        item['is_exist_item'] = False
+                        item['rowItem']['is_exist_item'] = False
                         return item
                     continue
 

@@ -194,7 +194,7 @@
                         </parsers>
                     </field>
 
-                    <field name="film_time" def="0"></field>
+                    <field name="film_time" def=""></field>
                     <field name="url">
                         <parsers>
                             <parser rep="url" />
