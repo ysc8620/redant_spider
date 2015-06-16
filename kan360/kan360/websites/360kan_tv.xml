@@ -118,9 +118,9 @@
 						</parsers>
 					</field>
                     <!--主图-->
-                    <field name="old_pic" def="">
+                     <field name="old_pic" def="">
                         <parsers>
-                            <parser xpath="//div[@class='v-poster']//img[@class='poster-cover']/@src" />
+                            <parser xpath="//div[@class='v-poster']//img/@src" />
                         </parsers>
 					</field>
                     <!--站点对应编号-->
@@ -171,7 +171,7 @@
 
 					<field name="gold" def="0" isTrim="1">
                         <parsers>
-                            <parser xpath="//div[@class='aggregate-rating']//div[contains(@class,'rating-site')]//p[@class='value']" />
+                            <parser xpath="//div[@class='aggregate-rating']//div[contains(@class,'rating-site')]//p[@class='value']/span" />
                             <parser rep="_Tags.xml(_this).rm('p').rm('span').rm('em').empty().run()" />
                         </parsers>
 					</field>
@@ -189,12 +189,12 @@
                     <field name="update_remark" def="">
                         <parsers>
                             <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(@class, 'episode')]" />
-                            <parser rep="_Tags.xml(_this).rm('i').empty().run()" />
-                            <parser re="_this.replace('剧集：','')" />
+                            <parser rep="_Tags.xml(_this).rm('i').rm('span').empty().run()" />
+                            <parser rep="_this.replace('剧集：','')" />
                         </parsers>
                     </field>
 
-                    <field name="film_time" def=""></field>
+                    <field name="film_time" def="0"></field>
                     <field name="url">
                         <parsers>
                             <parser rep="url" />
@@ -211,11 +211,18 @@
                             <parser rep="'$'.join(_this)" />
                         </parsers>
                     </field>
+                    <field name="play_type" def="" >
+                        <parsers>
+                            <parser xpath="//div[@id='tv-play']//div[contains(@class,'single')]//a/@class" />
+                            <parser rep="_this.replace('gico-site','').replace('gico-','')" />
+                        </parsers>
+                    </field>
 					<field name="content" isTrim="1">
 						<parsers>
 							<parser xpath="//p[@class='intro']//span[@class='text']" />
                             <parser rep="_Attrs.xml(_this).rm('class').rm('style').run()" />
-                            <parser rep="_Tags.xml(_this).rm('a').empty().run()" />
+                            <parser rep="_Tags.xml(_this).rm('a').rm('p').rm('span').empty().run()" />
+                            <parser rep="_this.replace('展开更多','')" />
 						</parsers>
 					</field>
                     <field name="addtime" def="0">

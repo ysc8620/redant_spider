@@ -18,7 +18,7 @@
 	  | waitQueue:当任务队列空的时候爬虫等待多长时间再索取任务
 	  | is_read_url 是否读取网站已有链接 方便去重
 	-->
-	<site name="360kan" country="Cn" website_id="1"  xpath="base_parser" url="360kan.com" reqDelay="0.1s" enable="1" charset="utf-8" schedule="1h" thread="1" waitQueue="5s">
+	<site name="imobshop" country="Singapore" website_id="1"  xpath="base_parser" url="imobshop.sg" reqDelay="0.1s" enable="1" charset="utf-8" schedule="1h" thread="1" waitQueue="5s">
 		<!--
 		  | HTTP Header
 		<headers>
@@ -172,13 +172,12 @@
 					<field name="gold" def="0" isTrim="1">
                         <parsers>
                             <parser xpath="//div[@class='aggregate-rating']//div[contains(@class,'rating-site')]//p[@class='value']" />
-                            <parser rep="_Tags.xml(_this).rm('p').rm('i').rm('span').rm('em').empty().run()" />
+                            <parser rep="_Tags.xml(_this).rm('p').rm('span').rm('em').empty().run()" />
                         </parsers>
 					</field>
 					<field name="golder" def="0" isTrim="1">
                         <parsers>
                             <parser xpath="//div[@class='aggregate-rating']//div[@class='rating-count']/text()" re="\d+" />
-                            <parser rep="_Tags.xml(_this).rm('p').rm('i').rm('span').rm('em').empty().run()" />
                         </parsers>
 					</field>
                     <field name="is_finish" def="0">

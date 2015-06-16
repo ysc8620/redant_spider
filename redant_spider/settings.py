@@ -73,7 +73,7 @@ REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 
 # 日志
-#LOG_FILE = "./error.log"
+# LOG_FILE = "./error.log"
 
 # Specify the full Redis URL for connecting (optional).
 # If set, this takes precedence over the REDIS_HOST and REDIS_PORT settings.

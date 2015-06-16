@@ -9,7 +9,7 @@ from kan360.common.db import *
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-domain = '360kan_mv'
+domain = '360kan_tv'
 html = file(sys.path[0]+'/html/'+domain+'.html', 'a+').read()
 hsl = Selector(text=html)
 
@@ -44,12 +44,13 @@ for i in fields_id:
         # if items['rowItem'][i] == '':
         #     items['rowItem'][i] = ' '
         sql += i+"=%s ,";
+        print type(i), i,items['rowItem'][i]
         data.append(items['rowItem'][i])
 sql = sql.strip(',')
 #DB.init().insertOne(sql,data)
 #print items
-for i in data:
-    print type(i), i
+# for i in data:
+#     print type(i), i
 
 
 

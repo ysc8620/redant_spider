@@ -8,7 +8,6 @@ from scrapy.http import Request, HtmlResponse
 from kan360.common.items import *
 from kan360.common.parser import *
 
-
 class DmozSpider(CrawlSpider):
     name = "movie"
     allowed_domains = ["360kan.com"]

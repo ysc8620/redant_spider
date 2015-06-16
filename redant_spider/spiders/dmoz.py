@@ -123,7 +123,7 @@ class DmozSpider(CrawlSpider):
         self.rules = tuple(rules)
 
         #是否清空redis
-        if r == None:
+        if r == '1':
             # 初始化redis
             redis = redisDB()
             #redis.flushSpider(name)

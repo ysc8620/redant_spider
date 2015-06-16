@@ -24,12 +24,7 @@ description, from_url, from_website(来自网站), status(1默认显示， 2 隐
 '''
 class BasePipeline(object):
     conn = None
-
-    def add_cate_goods_index(self, cate_id, goods_id):
-        DB.init().insertOne("INSERT INTO le_cate_goods_index SET cate_id=%s, goods_id=%s,weight=0",[cate_id, goods_id])
-        DB.init().end()
     '''
-   #
     '''
     def process_item(self, item, spider):
 
@@ -40,24 +35,39 @@ class BasePipeline(object):
             if item['rowItem']['is_exist_item'] == False:
                 return item
 
-        for i in item:
-            if type(item[i]) == unicode or type(item[i]) == str:
-                 item[i] = item[i].encode('utf-8')
-        # if item['rowItem']:
-        #     if item['goods']['price'] != item['price'] or item['goods']['original_price'] != item['originalPrice'] or item['goods']['name'] != item['name']:
-        #         DB.init().update("UPDATE le_goods SET isshow=1,name=%s,price=%s,original_price=%s, uptime=%s,expiry_time=%s,site_id=%s,cate_id=%s WHERE goods_id=%s",[item['name'],item['price'],item['originalPrice'],int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])
-        #     else:
-        #         DB.init().update("UPDATE le_goods SET isshow=1,uptime=%s,expiry_time=%s,site_id=%s WHERE goods_id=%s",[int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])
-        #     DB.init().end()
-        # else:
+        for i in item['rowItem']:
+            if type(item['rowItem'][i]) == unicode or type(item['rowItem'][i]) == str:
+                 item['rowItem'][i] = item['rowItem'][i].encode('utf-8')
+
         fields_id = item['rowItem']['sqlfields'].split(',')
+        updatesql_fields = item['rowItem']['updatesqlfields'].split(',')
         sql = "INSERT INTO js_vods SET "
         data = []
         for i in fields_id:
-            sql += "i=%s ,";
-            data.append(item['rowItem'][i])
+            if item['rowItem'].has_key(i):
+                sql += i + "=%s ,";
+                data.append(item['rowItem'][i])
+
+        if item['images']:
+            sql += "pic=%s ,";
+            data.append(item['images'][0])
         sql = sql.strip(',')
-        DB.init().insertOne('"'+sql+'"',data)
-        #DB.init().end()
+
+        if item['rowItem'].has_key('exits_item'):
+            if item['rowItem']['exits_item'] != False:
+                update_sql = "UPDATE js_vods SET "
+                update_data = []
+                for i in updatesql_fields:
+                    if item['rowItem'].has_key(i):
+                        update_sql += i + "=%s ,";
+                        update_data.append(item['rowItem'][i])
+                update_sql = update_sql.strip(',') + " WHERE id=%s"
+                update_data.append(item['rowItem']['exits_item']['id'])
+
+                DB.init().update(update_sql, update_data)
+            else:
+                DB.init().insertOne(sql,data)
+        else:
+            DB.init().insertOne(sql,data)
         return item
 

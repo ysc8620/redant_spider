@@ -1,7 +1,7 @@
 #coding=utf-8
 __author__ = 'ShengYue'
 import time
-import sys,os,json
+import sys,os,json,re
 from redant_spider.common.db import *
 from scrapy.selector import Selector
 from redant_spider.common.parser import *
@@ -13,10 +13,22 @@ domain = '360kan_tv'
 html = file(sys.path[0]+'/html/'+domain+'.html', 'a+').read()
 hsl = Selector(text=html)
 
+href_list = hsl.xpath('//a/@href').extract()
+for url in href_list:
+    row = re.match(r"/tv/(\w+).html+$", url)
+    if row:
+        print row.group(0)
+
+
+s = True
+if s:
+    exit()
 str_xml = file( sys.path[0]+'/../websites/'+domain+'.xml','a+').read()
 xsl = Selector(text=str_xml, type='xml')
 
-item = base_parser()
+
+
+item = test_parser()
 items = item.run(text=html, xml=xsl)
 
 

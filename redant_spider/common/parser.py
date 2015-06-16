@@ -147,9 +147,12 @@ class parser:
         return item
 
     def parser_item(self, html_parser, item,url,xml):
-        #sql fields
-        fields = xml.xpath("//sqlfields/fields/@name").extract()
-        item['rowItem']['sqlfields'] = fields[0]
+        sqlfields = xml.xpath('//sqlfields/fields/@name').extract()
+        item['rowItem']['sqlfields'] = sqlfields[0]
+
+        sqlfields = xml.xpath('//sqlfields/fields/@update').extract()
+        item['rowItem']['updatesqlfields'] = sqlfields[0]
+
         # is follow
         follows = xml.xpath("//targets//isFollow/parser")
         if follows:
@@ -182,28 +185,28 @@ class parser:
         if website_id:
             website_id = website_id[0].strip()
 
-        exist_name = xml.xpath("//targets//isExist/@name").extract()
-        exist_value = ''
-        row = False
-        if exist_name:
-            exist_name = exist_name[0].strip()
-            exist_list = xml.xpath("//targets//isExist/parser")
-
-            for exist in exist_list:
-                xpath = exist.xpath('@xpath').extract()
-                if xpath:
-                    exist_val = html_parser.xpath(xpath[0]).extract()
-                    if exist_val:
-                        exist_value = exist_val[0]
-                    continue
-                val = exist.xpath('@val').extract()
-                if val:
-                    try:
-                        exist_value = eval(val[0])
-                    except Exception, e:
-                        logs(time.strftime("------%Y-%m-%d %H:%M:%S-")  +val[0] +' eval error.')
-                        exit(0)
-                    continue
+        # exist_name = xml.xpath("//targets//isExist/@name").extract()
+        # exist_value = ''
+        # row = False
+        # if exist_name:
+        #     exist_name = exist_name[0].strip()
+        #     exist_list = xml.xpath("//targets//isExist/parser")
+        #
+        #     for exist in exist_list:
+        #         xpath = exist.xpath('@xpath').extract()
+        #         if xpath:
+        #             exist_val = html_parser.xpath(xpath[0]).extract()
+        #             if exist_val:
+        #                 exist_value = exist_val[0]
+        #             continue
+        #         val = exist.xpath('@val').extract()
+        #         if val:
+        #             try:
+        #                 exist_value = eval(val[0])
+        #             except Exception, e:
+        #                 logs(time.strftime("------%Y-%m-%d %H:%M:%S-")  +val[0] +' eval error.')
+        #                 exit(0)
+        #             continue
             # row = DB.init().getOne("SELECT id FROM js_vod WHERE website_id=%s AND "+exist_name+"=%s", [website_id,exist_value])
             # if row != False:
             #     item['rowItem'] = row
@@ -277,10 +280,28 @@ class parser:
                 item['rowItem'][name] = _this
         if item['rowItem'].has_key('url') == False:
             item['rowItem']['url'] = self.url
+        bool = False
+        if item['rowItem'].has_key('site_id'):
+            if item['rowItem']['site_id']:
+                bool = True
+                row = DB.init().getOne("SELECT id,site_id FROM js_vods WHERE website_id=%s AND site_id=%s", [website_id,item['rowItem']['site_id']])
+                if row != False:
+                    item['rowItem']['exits_item'] = row
 
-        if row == False and item['rowItem'].has_key('pic'):
-            if item['rowItem']['pic']:
-                item['image_urls'] = item['rowItem']['pic']
+        if bool == False and row == False:
+            if item['rowItem'].has_key('url'):
+                if item['rowItem']['url']:
+                    bool = True
+                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE website_id=%s AND url=%s", [website_id,item['rowItem']['url']])
+                    if row != False:
+                        item['rowItem']['exits_item'] = row
+
+        if row == False and item['rowItem'].has_key('old_pic'):
+            if item['rowItem']['old_pic']:
+                if type(item['rowItem']['old_pic']) == list:
+                    item['image_urls'] = item['rowItem']['old_pic']
+                elif type(item['rowItem']['old_pic']) == str or type(item['rowItem']['old_pic']) == unicode:
+                    item['image_urls'] = [item['rowItem']['old_pic']]
 
         afterParser = xml.xpath("//afterParser/field")
 
