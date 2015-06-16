@@ -97,7 +97,7 @@
                     !对应的值名
                     -->
                     <sqlfields>
-                        <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,film_time,url,jump_url,play_type,content,status,addtime,uptime"
+                        <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,watch_str,film_time,url,jump_url,play_type,content,status,addtime,uptime"
                                 update="uptime,jump_url,is_finish,update_remark,play_type"/>
                     </sqlfields>
 					<!--
@@ -189,8 +189,15 @@
                     <field name="update_remark" def="">
                         <parsers>
                             <parser xpath="//div[contains(@class,'v-main-info')]//p[contains(@class, 'episode')]" />
-                            <parser rep="_Tags.xml(_this).rm('i').rm('span').empty().run()" />
+                            <parser rep="_Tags.xml(_this).rm('i').rm('span').rm('p').empty().run()" />
                             <parser rep="_this.replace('剧集：','')" />
+                        </parsers>
+                    </field>
+
+                    <field name="watch_str" isArray="1">
+                        <parsers>
+                            <parser xpath="//dl[@id='genre']//a/text()" />
+                            <parser rep="'/'.join(_this)" />
                         </parsers>
                     </field>
 

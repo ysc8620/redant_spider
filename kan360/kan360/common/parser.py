@@ -218,7 +218,11 @@ class parser:
                     item['rowItem'][name] = []
                     _this = []
                 else:
-                    _this = item['rowItem'][name]
+                    if item['rowItem'][name]:
+                        pass
+                    else:
+                        item['rowItem'][name] = []
+                        _this = []
             #field_xml = Selector(text=field.extract()[0])
             field_html = field.extract()
             if field_html:
