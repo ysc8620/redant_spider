@@ -19,9 +19,6 @@ class DmozSpider(CrawlSpider):
         'http://www.360kan.com/dianshi/neidi.html',
         'http://www.360kan.com/dianshi/meiju.html',
         'http://www.360kan.com/dianshi/list.php',
-
-
-
     )
 
     rules = (

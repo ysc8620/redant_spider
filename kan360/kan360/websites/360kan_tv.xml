@@ -196,7 +196,7 @@
 
                     <field name="watch_str" isArray="1">
                         <parsers>
-                            <parser xpath="//dl[@id='genre']//a/text()" />
+                            <parser xpath="//p[@id='gene']//a/i/text()" />
                             <parser rep="'/'.join(_this)" />
                         </parsers>
                     </field>
