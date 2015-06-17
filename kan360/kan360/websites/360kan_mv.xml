@@ -217,7 +217,6 @@
                     <field name="jump_url" isArray="1" >
                         <parsers>
                             <parser xpath="//div[@id='search_result']//ul[@class='video-list']//a[@playtype='dianying']" />
-
                         </parsers>
                     </field>
                     <field name="play_type" isArray="1" >

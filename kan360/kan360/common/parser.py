@@ -218,8 +218,8 @@ class parser:
                     item['rowItem'][name] = []
                     _this = []
                 else:
-                    if item['rowItem'][name]:
-                        pass
+                    if len(item['rowItem'][name])>0:
+                        continue
                     else:
                         item['rowItem'][name] = []
                         _this = []

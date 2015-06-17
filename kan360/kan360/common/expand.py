@@ -9,9 +9,12 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 def parse_mv_jump_url(data):
+    #print data
+    #exit(0)
     ret = ''
     if data:
         for i in data:
+
             hts = Selector(text=i)
             text = hts.xpath("//em/text()").extract()
             href = hts.xpath("//a/@href").extract()
@@ -21,14 +24,21 @@ def parse_mv_jump_url(data):
                 else:
                     continue
             else:
-                text = hts.xpath("//a/text()").extract()
+                text = hts.xpath("//a//span[@class='info left']/text()").extract()
                 if len(text) > 0:
                     if len(text[0].strip()) > 0:
                         name = text[0].strip()
                     else:
                         continue
                 else:
-                    continue
+                    text = hts.xpath("//a/@sitename").extract()
+                    if len(text) > 0:
+                        if len(text[0].strip()) > 0:
+                            name = text[0].strip()
+                        else:
+                            continue
+                    else:
+                        continue
             if len(href) > 0:
                 if len(href[0].strip())>0:
                     url = href[0].strip()
