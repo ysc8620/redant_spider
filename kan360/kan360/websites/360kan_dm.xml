@@ -210,6 +210,14 @@
                             <parser rep="_this.replace('gico-site','').replace('gico-','')" />
                         </parsers>
                     </field>
+                    <field name="content" isTrim="1">
+						<parsers>
+							<parser xpath="//p[@class='intro']//span[@class='text']" />
+                            <parser rep="_Attrs.xml(_this).rm('class').rm('style').run()" />
+                            <parser rep="_Tags.xml(_this).rm('a').rm('p').rm('span').empty().run()" />
+                            <parser rep="_this.replace('展开更多','')" />
+						</parsers>
+					</field>
 					<field name="content" isTrim="1">
 						<parsers>
 							<parser xpath="//span[@id='full-intro']" />

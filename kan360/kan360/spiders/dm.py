@@ -23,13 +23,14 @@ class DmozSpider(CrawlSpider):
         Rule(LinkExtractor(  allow=r'http://www.360kan.com/?$')),
         Rule(LinkExtractor(allow=r'/dongman/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/dongman/list.php\??(&?(cat=\w+|year=\w+|pageno=\d+|area=\w+)?){0,4}$')),
+        Rule(LinkExtractor(allow=r'/dongman/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=\d+|area=(\d+|all)|act=|rank=(rankhot|pub))){0,6}$')),
+
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
         Rule(LinkExtractor(allow=r'/ct/(\w+).html$'), callback='parse_item'),
     )
 
     def __init__(self, *a, **kw):
-        infile = os.getcwd()+r'/kan360/websites/360kan_tv.xml'
+        infile = os.getcwd()+r'/kan360/websites/360kan_dm.xml'
         self.xml = Selector(text=file(infile,"a+").read(), type='xml')
         self.xpath_object = base_parser()
 
