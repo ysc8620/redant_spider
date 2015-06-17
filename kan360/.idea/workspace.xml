@@ -5,7 +5,7 @@
     <ignored path="kan360.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$PROJECT_DIR$/../redant_spider/redant_spider/websites/360kan_tv.xml" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433296898912" ignored="false" />
-    <file path="/dmoz.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434521761930" ignored="false" />
+    <file path="/dmoz.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434522474984" ignored="false" />
     <file path="$PROJECT_DIR$/../redant_spider/redant_spider/spiders/dmoz.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433311836446" ignored="false" />
     <file path="/settings.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433319216336" ignored="false" />
     <file path="$PROJECT_DIR$/../redant_spider/redant_spider/test/index.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433293645054" ignored="false" />
@@ -58,7 +58,7 @@
       <file leaf-file-name="dmoz.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kan360/spiders/dmoz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="79" selection-start="1845" selection-end="1845" vertical-scroll-proportion="-1.0698324">
+            <state line="43" column="0" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.4162011">
               <folding />
             </state>
           </provider>
@@ -115,7 +115,9 @@
         <entry file="file://$PROJECT_DIR$/kan360/common/expand.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="75" column="12" selection-start="2024" selection-end="2024" vertical-scroll-proportion="0.0">
-              <folding />
+              <folding>
+                <marker date="1434495898509" expanded="true" signature="1230:1971" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -644,7 +646,9 @@
     <entry file="file://$PROJECT_DIR$/kan360/common/expand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="75" column="12" selection-start="2024" selection-end="2024" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <marker date="1434495898509" expanded="true" signature="1230:1971" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -680,7 +684,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kan360/spiders/dmoz.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="79" selection-start="1845" selection-end="1845" vertical-scroll-proportion="-1.0698324">
+        <state line="43" column="0" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.4162011">
           <folding />
         </state>
       </provider>

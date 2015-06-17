@@ -37,12 +37,15 @@ class DmozSpider(CrawlSpider):
         Rule(LinkExtractor(allow=r'/tv/(\w+).html$'), callback='parse_item'),
 
 
-        Rule(LinkExtractor(allow=r'/gene/list.php((\?|&)(kw=[%\w]+|pageno=\d+|pre=[%\w]+)){0,3}$')),
-        Rule(LinkExtractor(allow=r'/gene/mlist.php((\?|&)(kw=[%\w]+|pageno=\d+|pre=[%\w]+)){0,3}$')),
+
 
         Rule(LinkExtractor(allow=r'/gene/tv.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
         Rule(LinkExtractor(allow=r'/gene/tvlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
 
+        Rule(LinkExtractor(allow=r'/top/detail/((\?|&)(postype=\d+|toptype=\d+|topname=\d+)){0,3}$$')),
+        Rule(LinkExtractor(allow=r'/topic/\w+.html$')),
+        Rule(LinkExtractor(allow=r'/gene/list.php((\?|&)(kw=[%\w]+|pageno=\d+|pre=[%\w]+)){0,3}$')),
+        Rule(LinkExtractor(allow=r'/gene/mlist.php((\?|&)(kw=[%\w]+|pageno=\d+|pre=[%\w]+)){0,3}$')),
 
         Rule(LinkExtractor(allow=r'/dianying/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
