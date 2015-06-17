@@ -19,7 +19,6 @@ class DmozSpider(CrawlSpider):
     )
 
     rules = (
-
         Rule(LinkExtractor(  allow=r'http://www.360kan.com/?$')),
         Rule(LinkExtractor(allow=r'/zongyi/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
@@ -30,7 +29,7 @@ class DmozSpider(CrawlSpider):
     )
 
     def __init__(self, *a, **kw):
-        infile = os.getcwd()+r'/kan360/websites/360kan_dm.xml'
+        infile = os.getcwd()+r'/kan360/websites/360kan_zy.xml'
         self.xml = Selector(text=file(infile,"a+").read(), type='xml')
         self.xpath_object = base_parser()
 

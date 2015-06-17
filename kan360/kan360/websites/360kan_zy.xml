@@ -97,8 +97,8 @@
                     !对应的值名
                     -->
                     <sqlfields>
-                        <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,play_make,gold,golder,is_finish,update_remark,watch_str,film_time,url,jump_url,play_type,content,status,addtime,uptime"
-                                update="uptime,jump_url,is_finish,update_remark,play_type"/>
+                        <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,jump_info,play_make,gold,golder,is_finish,update_remark,watch_str,film_time,url,jump_url,play_type,content,status,addtime,uptime"
+                                update="uptime,jump_url,is_finish,update_remark,play_type,jump_info"/>
                     </sqlfields>
 					<!--
 					  | 属性的配置
@@ -163,7 +163,6 @@
 					<field name="play_make" def="">
 						<parsers>
                             <parser xpath="//div[@id='otherinfo']//p[contains(.//em/text(), '播出：')]/span/text()" />
-
                         </parsers>
 					</field>
 
@@ -183,7 +182,7 @@
                         </parsers>
                     </field>
 
-                    <field name="watch_str" isArray="1">
+                    <field name="watch_str" def="">
 
                     </field>
 
@@ -193,7 +192,7 @@
                             <parser rep="url" />
                         </parsers>
                     </field>
-                    <field name="jump_url" isArray="1">
+                    <field name="jump_data" isArray="1">
                         <parsers>
                             <parser xpath="//div[@id='tv-play']//div[@class='content']//div[contains(@class,'full')]" />
                         </parsers>
@@ -229,12 +228,28 @@
                     </field>
                     <field name="status" def="1">
                     </field>
+                    <field name="jump_url" def="">
+                    </field>
+                    <field name="jump_info" def="">
+                    </field>
 				</model>
 
                 <afterParser>
+                    <field name="jump_data">
+                        <parsers>
+                            <parser rep="parse_zy(item['rowItem']['play_type'],item['rowItem']['url'])" />
+                        </parsers>
+                    </field>
+
                     <field name="jump_url">
                         <parsers>
-                            <parser rep="parse_jump_url(item['rowItem']['jump_url'])" />
+                            <parser rep="item['rowItem']['jump_data']['jump_url']" />
+                        </parsers>
+                    </field>
+
+                    <field name="jump_info">
+                        <parsers>
+                            <parser rep="item['rowItem']['jump_data']['jump_info']" />
                         </parsers>
                     </field>
                 </afterParser>
