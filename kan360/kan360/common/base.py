@@ -51,4 +51,8 @@ def logs(log):
 
 def urllogs(log):
     print log
-    file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+    file("./url.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+
+def infourllogs(log):
+    print log
+    file("./infourl.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
