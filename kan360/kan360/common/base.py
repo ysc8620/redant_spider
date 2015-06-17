@@ -48,3 +48,7 @@ def get_seo_title(str):
 def logs(log):
     print log
     file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+
+def urllogs(log):
+    print log
+    file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")

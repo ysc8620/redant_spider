@@ -36,9 +36,6 @@ class DmozSpider(CrawlSpider):
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
         Rule(LinkExtractor(allow=r'/tv/(\w+).html$'), callback='parse_item'),
 
-
-
-
         Rule(LinkExtractor(allow=r'/gene/tv.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
         Rule(LinkExtractor(allow=r'/gene/tvlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
 
@@ -67,11 +64,17 @@ class DmozSpider(CrawlSpider):
         super(CrawlSpider, self).__init__(*a, **kw)
         self._compile_rules()
 
+    def parse(self, response):
+        urllogs(response.url)
+        return self._parse_response(response, self.parse_start_url, cb_kwargs={}, follow=True)
+
     def parse_item(self, response):
+        urllogs(response.url)
         item = self.xpath_object.run(spider=self, response=response, xml=self.xml)
         return item
 
     def parse_item_movie(self, response):
+        urllogs(response.url)
         item = self.xpath_object.run(spider=self, response=response, xml=self.xml_mv)
         return item
 
