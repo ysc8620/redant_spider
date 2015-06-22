@@ -22,8 +22,8 @@ class DmozSpider(CrawlSpider):
         Rule(LinkExtractor(  allow=r'http://www.360kan.com/?$')),
         Rule(LinkExtractor(allow=r'/zongyi/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/zongyi/list.php((\?|&)(cat=(all|\d+)|pageno=\d+|area=(\d+|all)|year=|act=|rank=(rankhot|pub))){0,6}$')),
-        Rule(LinkExtractor(allow=r'/zongyi/list.php((\?|&)(cat=all|year=|pageno=\d+|area=all|act=[%\w]+)){0,4}$')),
+        Rule(LinkExtractor(allow=r'/zongyi/list.php((\?|&)(cat=(all|\d+)|pageno=[1-3]+|area=(\d+|all)|year=|act=|rank=(rankhot|pub))){0,6}$')),
+        Rule(LinkExtractor(allow=r'/zongyi/list.php((\?|&)(cat=all|year=|pageno=[1-3]+|area=all|act=[%\w]+)){0,4}$')),
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
         Rule(LinkExtractor(allow=r'/va/(\w+).html$'), callback='parse_item'),
     )

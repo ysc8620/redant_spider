@@ -22,17 +22,17 @@ class DmozSpider(CrawlSpider):
     )
 
     rules = (
-        Rule(LinkExtractor(allow=r'/top/detail/((\?|&)(postype=\d+|toptype=\d+|topname=\d+)){0,3}$$')),
-        Rule(LinkExtractor(allow=r'/topic/\w+.html$')),
-        Rule(LinkExtractor(allow=r'/gene/list.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,2}$')),
-        Rule(LinkExtractor(allow=r'/gene/mlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,2}$')),
+        #Rule(LinkExtractor(allow=r'/top/detail/((\?|&)(postype=\d+|toptype=\d+|topname=\d+)){0,3}$$')),
+        #Rule(LinkExtractor(allow=r'/topic/\w+.html$')),
+        #Rule(LinkExtractor(allow=r'/gene/list.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,2}$')),
+        #Rule(LinkExtractor(allow=r'/gene/mlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,2}$')),
 
         Rule(LinkExtractor(allow=r'/dianying/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/dianying/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=\d+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$')),
-        Rule(LinkExtractor(allow=r'/dianying/list.php((\?|&)(cat=all|year=all|pageno=\d+|area=all|act=[%\w]+)){0,6}$')),
+        Rule(LinkExtractor(allow=r'/dianying/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=[1-3]+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$')),
+        Rule(LinkExtractor(allow=r'/dianying/list.php((\?|&)(cat=all|year=all|pageno=[1-3]+|area=all|act=[%\w]+)){0,6}$')),
 
-        Rule(LinkExtractor(allow=r'/dianying/top/.+')),
+        #Rule(LinkExtractor(allow=r'/dianying/top/.+')),
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
         Rule(LinkExtractor(allow=r'/m/(\w+).html$'), callback='parse_item'),
     )

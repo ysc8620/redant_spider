@@ -26,14 +26,14 @@ class DmozSpider(CrawlSpider):
         Rule(LinkExtractor(  allow=r'http://www.360kan.com/$')),
         Rule(LinkExtractor(allow=r'/dianshi/(\w+).html$')),
         # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/dianshi/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=\d+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$')),
-        Rule(LinkExtractor(allow=r'/dianshi/list.php((\?|&)(cat=all|year=all|pageno=\d+|area=all|act=[%\w]+)){0,6}$')),
+        Rule(LinkExtractor(allow=r'/dianshi/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=[1-3]+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$')),
+        Rule(LinkExtractor(allow=r'/dianshi/list.php((\?|&)(cat=all|year=all|pageno=[1-3]+|area=all|act=[%\w]+)){0,6}$')),
 
         # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
         Rule(LinkExtractor(allow=r'/tv/(\w+).html$'), callback='parse_item'),
 
-        Rule(LinkExtractor(allow=r'/gene/tv.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
-        Rule(LinkExtractor(allow=r'/gene/tvlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
+        #Rule(LinkExtractor(allow=r'/gene/tv.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
+        #Rule(LinkExtractor(allow=r'/gene/tvlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
 
 
     )
