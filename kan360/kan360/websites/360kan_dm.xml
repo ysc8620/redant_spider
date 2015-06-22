@@ -201,7 +201,7 @@
                     <field name="play_type" isArray="1" >
                         <parsers>
                             <parser xpath="//div[@id='listing']/ul[@id='supplies']/li/@site" />
-                            <parser rep="'$'.join(_this)" />
+                            <parser rep="'$$$'.join(_this)" />
                         </parsers>
                     </field>
                     <field name="play_type" def="" >

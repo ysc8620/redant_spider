@@ -54,12 +54,17 @@ def parse_mv_jump_url(data):
     return ret
 
 def parse_dm_jump_url(data):
-    ret = ''
+    ret = old_sitename = ''
     if data:
         for i in data:
             hts = Selector(text=i)
             text = hts.xpath("//a/text()").extract()
             href = hts.xpath("//a/@href").extract()
+            sitename = hts.xpath("//a/@sitename").extract()
+            if old_sitename:
+                if old_sitename != sitename:
+                    ret = ret.strip()+"$$$"
+            old_sitename = sitename
             if len(text) > 0:
                 if len(text[0].strip()) > 0:
                     name = text[0].strip()
@@ -76,9 +81,8 @@ def parse_dm_jump_url(data):
                 continue
 
             ret += name+'$'+url+"\n"
-            ret = ret.strip()+"$$$"
+
     ret = ret.strip('$$$')
-    #print ret
     return ret
 
 def parse_jump_url(data):

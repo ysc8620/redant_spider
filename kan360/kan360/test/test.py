@@ -3,6 +3,62 @@ __author__ = 'ShengYue'
 import re,json
 from scrapy.selector import Selector
 
+class parser_tags:
+    allow_tags = []
+    del_tags = []
+    isEmpty = False
+    xml = ''
+    parser = None
+    def __init__(self, parser=None):
+        self.parser = parser
+
+    def xml(self, xml):
+        self.xml = xml
+        return self
+
+    def rm(self, tag):
+        self.del_tags.append(tag)
+        return self
+
+    def kp(self, tag):
+        self.allow_tags.append(tag)
+        return self
+
+    def empty(self):
+        self.isEmpty = True
+        return  self
+
+    def __rm(self):
+        tags = ''
+        for tag in self.del_tags:
+            tags = tags+'|'+tag
+        tags = tags.strip('|')
+
+        if tags:
+            link = re.compile(r"</?("+tags+").*?>", re.I)
+            self.xml = re.sub( link, '', self.xml)
+
+    def __kp(self):
+        tags = ''
+        for tag in self.allow_tags:
+            tags = tags + '|' + tag + '|/' + tag
+        tags = tags.strip('|')
+
+        if tags:
+            link = re.compile(r"<[^("+tags+")].*?>",re.I)
+            self.xml = re.sub(link,'',self.xml)
+
+    def __empty(self):
+        if self.isEmpty:
+            link = re.compile(r"\s+")
+            self.xml = re.sub(link,' ', self.xml)
+
+    def run(self):
+        self.__rm()
+        self.__kp()
+        self.__empty()
+        return self.xml
+
 def parser_url():
     m = re.search(r'/dianshi/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=\d+|area=(\d+|all)|act=[%\w]+|rank=(createtime|rankpoint))){0,6}$','http://www.360kan.com/dianshi/list.php?rank=rankpoint&cat=all&year=other&area=all&act=%E9%BB%84%E6%B8%A4')
     if m:
@@ -27,8 +83,10 @@ def test():
         title = dls.xpath('//a/@title').extract()
 
         print href[0],text[0],img[0],title[0]
-
+def sp():
+    _Tags = parser_tags()
+    print _Tags.xml('x').rm('p').rm('span').rm('em').empty().run()
 if __name__ == '__main__':
-    test()
+    sp()
 
 
