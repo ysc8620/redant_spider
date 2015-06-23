@@ -126,9 +126,9 @@ class DB(object):
             #     self.conn = MySQLdb.connect(user='24a',db='myilovedeals',passwd='24abcdef',host='localhost',unix_socket='/tmp/mysql.sock')#,unix_socket='/tmp/mysql.sock'
             # elif self.db == 'test':
             try:
-                DB.__pool = MySQLdb.connect(user = 'root',db='test',passwd = 'LEsc2008',host='localhost',unix_socket='/tmp/mysql.sock')
+                DB.__pool = MySQLdb.connect(user = 'root',db='jisucms',passwd = 'LEsc2008',host='localhost',unix_socket='/tmp/mysql.sock')
             except Exception,e:
-                DB.__pool = MySQLdb.connect(user = 'root',db='test',passwd = 'LEsc2008',host='localhost')
+                DB.__pool = MySQLdb.connect(user = 'root',db='jisucms',passwd = 'LEsc2008',host='localhost')
 
         return DB.__pool
 
