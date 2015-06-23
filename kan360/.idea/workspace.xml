@@ -22,7 +22,7 @@
     <file path="/db.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434963670620" ignored="false" />
     <file path="/imagepipelines.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433325880470" ignored="false" />
     <file path="/movie.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433372327103" ignored="false" />
-    <file path="/360kan_mv.xml" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435062369395" ignored="false" />
+    <file path="/360kan_mv.xml" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435063123244" ignored="false" />
     <file path="/expand.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434960970364" ignored="false" />
     <file path="/test.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434667612288" ignored="false" />
     <file path="/dm.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434526266708" ignored="false" />
@@ -64,7 +64,7 @@
       <file leaf-file-name="360kan_mv.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_mv.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="40" selection-start="3260" selection-end="3267" vertical-scroll-proportion="0.55985266">
+            <state line="143" column="81" selection-start="4721" selection-end="4721" vertical-scroll-proportion="0.72007364">
               <folding />
             </state>
           </provider>
@@ -579,7 +579,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_mv.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="40" selection-start="3260" selection-end="3267" vertical-scroll-proportion="0.55985266">
+        <state line="143" column="81" selection-start="4721" selection-end="4721" vertical-scroll-proportion="0.72007364">
           <folding />
         </state>
       </provider>

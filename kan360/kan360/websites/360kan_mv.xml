@@ -27,6 +27,7 @@
         !settings-->
         <allowedDomains>
             <url url="360kan.com" />
+            <url url="film.360kan.com" />
         </allowedDomains>
 
         <startUrls>
@@ -118,12 +119,33 @@
 							<parser xpath="//h1[@id='film_name']/text()" />
 						</parsers>
 					</field>
+
+                    <field name="title" isTrim="1">
+						<parsers>
+							<parser xpath="//h2[@class='p-movieinfo-content-title-text']/text()" />
+						</parsers>
+					</field>
+
+                    <field name="title" isTrim="1">
+						<parsers>
+							<parser xpath="//div[@id='js-info']//h3/text()" />
+						</parsers>
+					</field>
+
                     <!--主图-->
                     <field name="old_pic" def="">
                         <parsers>
                             <parser xpath="//div[@id='poster']//img[@id='film_poster']/@src" />
                         </parsers>
 					</field>
+
+                    <field name="old_pic" def="">
+                        <parsers>
+                            <parser xpath="//div[@class='p-movieinfo-cover']//img/@src" />
+                        </parsers>
+					</field>
+
+
                     <!--站点对应编号-->
                     <field name="site_id" def="0">
                         <parsers>
