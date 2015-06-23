@@ -100,7 +100,7 @@
       <file leaf-file-name="run.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="17" selection-start="29" selection-end="29" vertical-scroll-proportion="0.03417266">
+            <state line="7" column="5" selection-start="148" selection-end="148" vertical-scroll-proportion="0.23920864">
               <folding />
             </state>
           </provider>
@@ -597,7 +597,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="17" selection-start="29" selection-end="29" vertical-scroll-proportion="0.03417266">
+        <state line="7" column="5" selection-start="148" selection-end="148" vertical-scroll-proportion="0.23920864">
           <folding />
         </state>
       </provider>

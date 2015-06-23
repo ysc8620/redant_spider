@@ -5,7 +5,7 @@ echo $basepath
 cd $basepath
 for file in `ls $basepath/kan360/websites/*.xml`
 do
- name = $(basename "${file%%.*}")
+ name=$(basename "${file%%.*}")
  scrapy crawl dmoz -a name=$name
  sleep 1m
 done
