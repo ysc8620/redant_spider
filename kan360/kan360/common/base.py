@@ -49,6 +49,10 @@ def logs(log):
     print log
     file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
 
+def runlogs(log):
+    print log
+    file("./run.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+
 def urllogs(log):
     print log
     file("./url.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")

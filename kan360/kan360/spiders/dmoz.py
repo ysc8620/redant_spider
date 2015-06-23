@@ -21,15 +21,15 @@ class DmozSpider(CrawlSpider):
     def __init__(self,name=None,r=None, *a, **kw):
         self.start_time = int(time.time())
         if name == None:
-            logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' Spider Name No Exits.')
+            runlogs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' Spider Name No Exits.')
             exit(0)
 
         infile = os.getcwd()+r'/kan360/websites/'+name+'.xml'
         if os.path.exists(infile):
-            logs('Spider '+ name + ' Start Read.')
+            runlogs('Spider '+ name + ' Start Read.')
             self.xml = Selector(text=file(infile,"a+").read(), type='xml')
         else:
-            logs( 'Spider ' + name +' No Exits.')
+            runlogs( 'Spider ' + name +' No Exits.')
             exit(0)
 
         self.name = self.name +':'+ name
@@ -39,7 +39,7 @@ class DmozSpider(CrawlSpider):
         enable = self.xml.xpath("//site/@enable").extract()[0].strip()
         if enable != '1':
             if r == None:
-                logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' ' + name +' No Enable.')
+                runlogs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' ' + name +' No Enable.')
                 exit(0)
         # 设置匹配模式
         xpath = self.xml.xpath("//site/@xpath").extract()
@@ -107,7 +107,7 @@ class DmozSpider(CrawlSpider):
     u''' 爬虫结束时操作 会反馈真实停止状态 '''
     def closed(self,reason):
         ''' 自然完成后更新隐藏信息 '''
-        logs(time.strftime("======%Y-%m-%d %H:%M:%S Spider ")  +' '+ self.name + ' Stop.')
+        runlogs(time.strftime("======%Y-%m-%d %H:%M:%S Spider ")  +' '+ self.name + ' Stop.')
 
 
 if __name__ =='__main__':
