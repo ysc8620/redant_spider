@@ -31,7 +31,7 @@
     <file path="/zy.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434569918938" ignored="false" />
     <file path="/360kan_zy.xml" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435061200260" ignored="false" />
     <file path="/mv.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434963556082" ignored="false" />
-    <file path="/run.sh" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435065586851" ignored="false" />
+    <file path="/run.sh" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435065764111" ignored="false" />
     <file path="/tv.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435059534498" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +100,7 @@
       <file leaf-file-name="run.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="29" selection-start="201" selection-end="201" vertical-scroll-proportion="0.2733813">
+            <state line="11" column="51" selection-start="269" selection-end="269" vertical-scroll-proportion="0.37589929">
               <folding />
             </state>
           </provider>
@@ -597,7 +597,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="29" selection-start="201" selection-end="201" vertical-scroll-proportion="0.2733813">
+        <state line="11" column="51" selection-start="269" selection-end="269" vertical-scroll-proportion="0.37589929">
           <folding />
         </state>
       </provider>
