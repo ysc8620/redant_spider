@@ -275,7 +275,7 @@ class parser:
                 if item['rowItem']['url']:
                     #bool = True
                     ## website_id=%s AND
-                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE url=%s", [website_id,item['rowItem']['url']])
+                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE url=%s", [item['rowItem']['url']])
                     if row != False:
                         item['rowItem']['exits_item'] = row
 

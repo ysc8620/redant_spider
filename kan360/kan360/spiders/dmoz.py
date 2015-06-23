@@ -13,7 +13,7 @@ from kan360.common.parser import *
 class DmozSpider(CrawlSpider):
     name = "dmoz"
     allowed_domains = []
-    start_urls = ()
+    start_urls = []
     rules = ()
     start_time = None
     xml = None

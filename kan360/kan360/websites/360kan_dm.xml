@@ -16,7 +16,7 @@
 		<!--
 		  | HTTP Header
 		<headers>
-			<header name="Referer" value="http://www.straitsdeal.com/deals/" />
+			<header name="Referer" value="http://www.360kan.com/" />
 		</headers>-->
 		<!--
 		  | HTTP Cookie
@@ -29,7 +29,6 @@
             <url url="360kan.com" />
         </allowedDomains>
         <startUrls>
-            <!--<url url="https://www.imobshop.sg/tech/huawei-g730-black-white" />-->
             <url url="http://www.360kan.com/" />
             <url url="http://www.360kan.com/" />
             <url url="http://www.360kan.com/dongman/index.html" />
