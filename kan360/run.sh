@@ -1,4 +1,5 @@
 #!/bin/bash
+killall -9 scrapy
 basepath=$(cd `dirname $0`; pwd)
 echo $basepath
 cd $basepath
