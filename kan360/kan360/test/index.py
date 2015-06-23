@@ -9,7 +9,7 @@ from kan360.common.db import *
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-domain = '360kan_dm'
+domain = '360kan_mv'
 html = file(sys.path[0]+'/html/'+domain+'.html', 'a+').read()
 hsl = Selector(text=html)
 

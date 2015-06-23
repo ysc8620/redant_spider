@@ -258,7 +258,11 @@ class parser:
                         except Exception, e:
                             print rep[0],_this
                             logs(time.strftime("------%Y-%m-%d %H:%M:%S") + rep[0]+ ' rep eval error.' + e.message)
-                item['rowItem'][name] = _this
+                if item['rowItem'].has_key(name) == False:
+                    item['rowItem'][name] = _this
+                else:
+                    if len(item['rowItem'][name]) < 1:
+                        item['rowItem'][name] = _this
         if item['rowItem'].has_key('url') == False:
             item['rowItem']['url'] = self.url
         bool = False
