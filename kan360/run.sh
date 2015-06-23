@@ -1,6 +1,6 @@
 #!/bin/bash
 basepath=$(cd `dirname $0`; pwd)
-echo basepath
+echo $basepath
 #cd /wwwroot/spiderling/spider
 
 #scrapy crawl dmoz -a n=imobshop.xml > /soft/py.log
