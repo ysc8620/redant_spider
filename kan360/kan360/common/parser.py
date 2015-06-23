@@ -263,18 +263,19 @@ class parser:
             item['rowItem']['url'] = self.url
         bool = False
         row = False
-        if item['rowItem'].has_key('site_id'):
-            if item['rowItem']['site_id']:
-                bool = True
-                row = DB.init().getOne("SELECT id,site_id FROM js_vods WHERE website_id=%s AND site_id=%s", [website_id,item['rowItem']['site_id']])
-                if row != False:
-                    item['rowItem']['exits_item'] = row
+        # if item['rowItem'].has_key('site_id'):
+        #     if item['rowItem']['site_id']:
+        #         bool = True
+        #         row = DB.init().getOne("SELECT id,site_id FROM js_vods WHERE website_id=%s AND site_id=%s", [website_id,item['rowItem']['site_id']])
+        #         if row != False:
+        #             item['rowItem']['exits_item'] = row
 
         if bool == False and row == False:
             if item['rowItem'].has_key('url'):
                 if item['rowItem']['url']:
-                    bool = True
-                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE website_id=%s AND url=%s", [website_id,item['rowItem']['url']])
+                    #bool = True
+                    ## website_id=%s AND
+                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE url=%s", [website_id,item['rowItem']['url']])
                     if row != False:
                         item['rowItem']['exits_item'] = row
 

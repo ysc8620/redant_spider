@@ -12,37 +12,89 @@ from kan360.common.parser import *
 
 class DmozSpider(CrawlSpider):
     name = "dmoz"
-    allowed_domains = ["360kan.com"]
-    start_urls = (
-        'http://www.360kan.com/',
-        'http://www.360kan.com/dianshi/index.html',
-        'http://www.360kan.com/dianshi/neidi.html',
-        'http://www.360kan.com/dianshi/meiju.html',
-        'http://www.360kan.com/dianshi/list.php',
-    )
+    allowed_domains = []
+    start_urls = ()
+    rules = ()
+    start_time = None
+    xml = None
 
-    rules = (
+    def __init__(self,name=None,r=None, *a, **kw):
+        self.start_time = int(time.time())
+        if name == None:
+            logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' Spider Name No Exits.')
+            exit(0)
 
-        Rule(LinkExtractor(  allow=r'http://www.360kan.com/$')),
-        Rule(LinkExtractor(allow=r'/dianshi/(\w+).html$')),
-        # 提取匹配 'category.php' (但不匹配 'subsection.php') 的链接并跟进链接(没有callback意味着follow默认为True)
-        Rule(LinkExtractor(allow=r'/dianshi/list.php((\?|&)(cat=(all|\d+)|year=(other|all|\d+)|pageno=[1-3]+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$')),
-        Rule(LinkExtractor(allow=r'/dianshi/list.php((\?|&)(cat=all|year=all|pageno=[1-3]+|area=all|act=[%\w]+)){0,6}$')),
+        infile = os.getcwd()+r'/kan360/websites/'+name+'.xml'
+        if os.path.exists(infile):
+            logs('Spider '+ name + ' Start Read.')
+            self.xml = Selector(text=file(infile,"a+").read(), type='xml')
+        else:
+            logs( 'Spider ' + name +' No Exits.')
+            exit(0)
 
-        # 提取匹配 'item.php' 的链接并使用spider的parse_item方法进行分析
-        Rule(LinkExtractor(allow=r'/tv/(\w+).html$'), callback='parse_item'),
+        self.name = self.name +':'+ name
+        self.spider_name = name
 
-        #Rule(LinkExtractor(allow=r'/gene/tv.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
-        #Rule(LinkExtractor(allow=r'/gene/tvlist.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$')),
+        # 是否启用爬虫
+        enable = self.xml.xpath("//site/@enable").extract()[0].strip()
+        if enable != '1':
+            if r == None:
+                logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' ' + name +' No Enable.')
+                exit(0)
+        # 设置匹配模式
+        xpath = self.xml.xpath("//site/@xpath").extract()
+        if xpath:
+            self.xpath_model = xpath[0].strip()
 
+        try:
+            self.xpath_object = eval(self.xpath_model+'()')
+        except:
+            logs(time.strftime("------%Y-%m-%d %H:%M:%S ") +' xpath model not found.')
+            exit(0)
 
-    )
+        # 设置运行域名
+        allowe_url = self.xml.xpath("//site/allowedDomains/url")
+        if allowe_url:
+            for url in allowe_url:
+                #start_url_xpath = Selector(text=url, type='xml')
+                link = url.xpath('@url').extract()
+                if link:
+                    page_url =link[0].strip()
+                    self.allowed_domains.append(page_url)
 
-    def __init__(self, *a, **kw):
-        infile = os.getcwd()+r'/kan360/websites/360kan_tv.xml'
-        self.xml = Selector(text=file(infile,"a+").read(), type='xml')
+        # 设置起始URL
+        start_url = self.xml.xpath("//site/startUrls/url")
+        if start_url:
+            for url in start_url:
+                link = url.xpath('@url').extract()
+                if link:
+                    page_url = link[0].strip()
+                    self.start_urls.append(page_url)
 
-        self.xpath_object = base_parser()
+        # 设置链接规则
+        url_rule = self.xml.xpath("//site/queueRules/rule")
+        rules = []
+        for rule in url_rule:
+            str_allow = rule.xpath("@rule").extract()
+            str_allow = '' if len(str_allow)<1 else str_allow[0].strip()
+            str_deny = rule.xpath("@deny").extract()
+            str_deny = '' if len(str_deny)<1 else str_deny[0].strip()
+            str_callback = rule.xpath("@callback").extract()
+            str_callback = '' if len(str_callback)<1 else str_callback[0].strip()
+
+            if str_callback != '':
+                if str_deny != '':
+                    ru = Rule(LinkExtractor(allow=r""+str_allow, deny=r""+str_deny),callback=str_callback)
+                else:
+                    ru = Rule(LinkExtractor(allow=r""+str_allow), callback=str_callback)
+            else:
+                if str_deny != '':
+                    ru = Rule(LinkExtractor(allow=r""+str_allow ,deny=r""+str_deny))
+                else:
+                    ru = Rule(LinkExtractor(allow=r""+str_allow))
+            rules.append(ru)
+
+        self.rules = tuple(rules)
 
         super(CrawlSpider, self).__init__(*a, **kw)
         self._compile_rules()

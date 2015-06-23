@@ -9,16 +9,10 @@
 <beans>
 	<!--
 	  | name:名称
-	  | url:种子链接
-	  | reqDelay:{n}s|{n}m|{n}h|n每次请求之前延缓时间
 	  | enable:0|1是否开启本网站的抓取
 	  | charset:网站字符集
-	  | schedule:调度时间，每隔多长时间重新从种子链接抓取
-	  | thread:分配给本网站爬虫的线程数
-	  | waitQueue:当任务队列空的时候爬虫等待多长时间再索取任务
-	  | is_read_url 是否读取网站已有链接 方便去重
 	-->
-	<site name="imobshop" country="Singapore" website_id="1"  xpath="base_parser" url="imobshop.sg" reqDelay="0.1s" enable="1" charset="utf-8" schedule="1h" thread="1" waitQueue="5s">
+	<site name="mv" website_id="1"  xpath="base_parser" enable="1" charset="utf-8">
 		<!--
 		  | HTTP Header
 		<headers>
@@ -31,17 +25,19 @@
 		</cookies>-->
         <!--
         !settings-->
-        <settings>
-            <setting name="xx" />
-        </settings>
+        <allowedDomains>
+            <url url="360kan.com" />
+        </allowedDomains>
+
         <startUrls>
             <!--<url url="https://www.imobshop.sg/tech/huawei-g730-black-white" />-->
             <url url="http://www.360kan.com/" />
-            <!--//电视剧部分-->
-            <url url="http://www.360kan.com/dianshi/index.html" />
-            <url url="http://www.360kan.com/dianshi/neidi.html" />
-            <url url="http://www.360kan.com/dianshi/meiju.html" />
-            <url url="http://www.360kan.com/dianshi/list.php" />
+            <url url="http://www.360kan.com/dianying/index.html" />
+            <url url="http://www.360kan.com/vip/index.html" />
+            <url url="http://www.360kan.com/weidianying/index.html" />
+            <url url="http://www.360kan.com/top/" />
+            <url url="http://www.360kan.com/dianying/list.php" />
+
         </startUrls>
 		<!--
 		  | 进入任务队列的URL规则
@@ -54,10 +50,15 @@
 			  | value:值
 			-->
             <rule rule="http://www.360kan.com/$"/>
-            <rule rule="/dianshi/(\w+).html$" />
-            <rule rule="/dianshi/list.php$" />
-            <rule rule="/dianshi/list.php?pageno=\d+$" />
-            <rule rule="/tv/(\w+).html$" callback="parse_item" />
+            <rule rule="/top/detail/((\?|&amp;)(postype=\d+|toptype=\d+|topname=\d+)){0,3}$" />
+            <rule rule="/topic/\w+.html$" />
+            <rule rule="/gene/list.php((\?|&amp;)(kw=[%\w]+|pageno=\d+)){0,2}$" />
+            <rule rule="/gene/mlist.php((\?|&amp;)(kw=[%\w]+|pageno=\d+)){0,2}$" />
+            <rule rule="/dianying/(\w+).html$" />
+            <rule rule="/dianying/list.php((\?|&amp;)(cat=(all|\d+)|year=(other|all|\d+)|pageno=[1-3]+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$" />
+            <rule rule="/dianying/list.php((\?|&amp;)(cat=all|year=all|pageno=[1-3]+|area=all|act=[%\w]+)){0,6}$" />
+            <rule rule="/dianying/top/.+" />
+            <rule rule="/m/(\w+).html$" callback="parse_item" />
 		</queueRules>
 		<!--
 		  | 抓取目标
@@ -283,7 +284,7 @@
 			<plugin enable="1" name="spider_plugin" version="0.0.1" desc="这是一个官方实现的默认插件，实现了所有扩展点。">
 				<providers>
 					<provider>
-						<orgnization name="深圳优扣科技有限公司" website="" desc="致力于打造一流的社交分享购物社区!">
+						<orgnization name="佳乐影视" website="" desc="致力于打造一流的社交分享购物社区!">
 							<author name="ShengYue" website="http://blog.sina.com.cn/leshengchang" email="ysc8620@163.com" weibo="http://weibo.com/aisls" desc="" />
 						</orgnization>
 					</provider>
