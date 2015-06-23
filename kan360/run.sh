@@ -6,7 +6,7 @@ for file in `ls $basepath/kan360/websites/*.xml`
 do
  name = $(basename "${file%%.*}")
  scrapy crawl dmoz -a name=$name
- sleep 5m
+ sleep 1m
 done
 #scrapy crawl dmoz -a n=imobshop.xml > /soft/py.log
 #sleep 5m
