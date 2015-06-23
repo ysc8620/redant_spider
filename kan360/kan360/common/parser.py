@@ -264,7 +264,7 @@ class parser:
                     if len(item['rowItem'][name]) < 1:
                         item['rowItem'][name] = _this
 
-                    if len(_this)>0:
+                    if type(_this) == int or len(_this)>0:
                         item['rowItem'][name] = _this
 
         if item['rowItem'].has_key('url') == False:
