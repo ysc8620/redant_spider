@@ -52,10 +52,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="360kan_dm.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="360kan_dm.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_dm.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="0" selection-start="3486" selection-end="3486" vertical-scroll-proportion="-0.76">
+            <state line="48" column="99" selection-start="1357" selection-end="1357" vertical-scroll-proportion="-4.4304934">
               <folding />
             </state>
           </provider>
@@ -70,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="parser.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kan360/common/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="262" column="21" selection-start="8123" selection-end="8123" vertical-scroll-proportion="0.40339702">
+            <state line="274" column="44" selection-start="8558" selection-end="8558" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -156,9 +156,9 @@
         <option value="$PROJECT_DIR$/kan360/websites/360kan_zy.xml" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/kan360/test/index.py" />
-        <option value="$PROJECT_DIR$/kan360/websites/360kan_dm.xml" />
         <option value="$PROJECT_DIR$/kan360/websites/360kan_mv.xml" />
         <option value="$PROJECT_DIR$/kan360/common/parser.py" />
+        <option value="$PROJECT_DIR$/kan360/websites/360kan_dm.xml" />
       </list>
     </option>
   </component>
@@ -573,13 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="101" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_zy.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="77" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0">
@@ -615,9 +608,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_dm.xml">
+    <entry file="file://$PROJECT_DIR$/kan360/common/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="0" selection-start="3486" selection-end="3486" vertical-scroll-proportion="-0.76">
+        <state line="274" column="44" selection-start="8558" selection-end="8558" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="101" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -629,9 +629,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kan360/common/parser.py">
+    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_dm.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="262" column="21" selection-start="8123" selection-end="8123" vertical-scroll-proportion="0.40339702">
+        <state line="48" column="99" selection-start="1357" selection-end="1357" vertical-scroll-proportion="-4.4304934">
           <folding />
         </state>
       </provider>

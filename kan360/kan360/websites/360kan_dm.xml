@@ -87,7 +87,7 @@
                     !对应的值名
                     -->
                     <sqlfields>
-                        <fields name="title,old_pic,website_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,film_time,url,jump_url,play_type,content,status,addtime"
+                        <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,film_time,url,jump_url,play_type,content,status,addtime"
                                 update="jump_url,is_finish,update_remark,play_type"/>
                     </sqlfields>
 					<!--
@@ -95,7 +95,7 @@
 					  | name:属性名称
 					  | parser:针对该属性的解析规则
 					-->
-					<field name="title" def="" isTrim="1">
+					<field name="title" isTrim="1">
 						<!--
 						  | xpath: XPath规则，如果目标页面是XML，则可以使用2.0语法，否则HTML的话暂时只能1.0
 						  | attribute:当使用XPath解析后的内容不是文本而是一个Node节点对象的时候，可以给定一个属性名获取其属性值例如<img src="" />
@@ -113,7 +113,12 @@
                             <parser xpath="//div[@id='poster']//img/@src" />
                         </parsers>
 					</field>
-
+                    <!--站点对应编号-->
+                    <field name="site_id" def="0">
+                        <parsers>
+                            <parser xpath="//div[@id='poster']//a/@movieid" />
+                        </parsers>
+                    </field>
                     <!--分类编号-->
                     <field name="cid_ids" def="3"></field>
                     <!--分类-->
