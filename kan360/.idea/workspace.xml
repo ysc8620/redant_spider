@@ -106,28 +106,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="360kan_tv.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="360kan_tv.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="73" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.44078946">
+            <state line="51" column="73" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dmoz.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kan360/spiders/dmoz.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="109" column="90" selection-start="3916" selection-end="3916" vertical-scroll-proportion="0.554371">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="dmoz.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kan360/spiders/dmoz.py">
+        <entry file="file://$PROJECT_DIR$/../redant_spider/spiders/dmoz.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="34" selection-start="838" selection-end="838" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="run.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="3" selection-start="230" selection-end="230" vertical-scroll-proportion="0.0">
+            <state line="181" column="4" selection-start="6462" selection-end="6636" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -159,7 +159,6 @@
         <option value="$PROJECT_DIR$/run.sh.py" />
         <option value="$PROJECT_DIR$/kan360/spiders/tv.py" />
         <option value="$PROJECT_DIR$/kan360/spiders/dm.py" />
-        <option value="$PROJECT_DIR$/kan360/spiders/dmoz.py" />
         <option value="$PROJECT_DIR$/kan360/websites/360kan_zy.xml" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/kan360/test/index.py" />
@@ -168,6 +167,7 @@
         <option value="$PROJECT_DIR$/kan360/common/parser.py" />
         <option value="$PROJECT_DIR$/kan360/websites/360kan_mv.xml" />
         <option value="$PROJECT_DIR$/kan360/websites/360kan_tv.xml" />
+        <option value="$PROJECT_DIR$/kan360/spiders/dmoz.py" />
       </list>
     </option>
   </component>
@@ -590,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../redant_spider/spiders/dmoz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="10" selection-start="712" selection-end="712" vertical-scroll-proportion="0.5248619">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kan360/common/db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="36" selection-start="2820" selection-end="2820" vertical-scroll-proportion="-0.59484345">
@@ -607,13 +600,6 @@
     <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_zy.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="77" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kan360/spiders/dmoz.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="34" selection-start="838" selection-end="838" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -676,7 +662,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="73" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.44078946">
+        <state line="51" column="73" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../redant_spider/spiders/dmoz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="4" selection-start="6462" selection-end="6636" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kan360/spiders/dmoz.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="90" selection-start="3916" selection-end="3916" vertical-scroll-proportion="0.554371">
           <folding />
         </state>
       </provider>

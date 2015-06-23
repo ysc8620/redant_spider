@@ -104,6 +104,11 @@ class DmozSpider(CrawlSpider):
         item = self.xpath_object.run(spider=self, response=response, xml=self.xml)
         return item
 
+    u''' 爬虫结束时操作 会反馈真实停止状态 '''
+    def closed(self,reason):
+        ''' 自然完成后更新隐藏信息 '''
+        logs(time.strftime("======%Y-%m-%d %H:%M:%S Spider ")  +' '+ self.name + ' Stop.')
+
 
 if __name__ =='__main__':
     print type([])
