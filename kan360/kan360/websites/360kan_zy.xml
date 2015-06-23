@@ -47,8 +47,8 @@
 			-->
             <rule rule="http://www.360kan.com/$"/>
             <rule rule="/zongyi/(\w+).html$" />
-            <rule rule="/zongyi/list.php((\?|&amp;)(cat=(all|\d+)|pageno=[1-3]+|area=(\d+|all)|year=|act=|rank=(rankhot|pub))){0,6}$" />
-            <rule rule="/zongyi/list.php((\?|&amp;)(cat=all|year=|pageno=[1-3]+|area=all|act=[%\w]+)){0,4}$" />
+            <rule rule="/zongyi/list.php((\?|&amp;)(cat=(all|\d+)|pageno=[1-2]+|area=(\d+|all)|year=|act=|rank=(rankhot|pub))){0,6}$" />
+            <rule rule="/zongyi/list.php((\?|&amp;)(cat=all|year=|pageno=[1-2]+|area=all|act=[%\w]+)){0,4}$" />
             <rule rule="/va/(\w+).html$" callback="parse_item" />
 		</queueRules>
 		<!--
