@@ -22,7 +22,7 @@
     <file path="/db.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434963670620" ignored="false" />
     <file path="/imagepipelines.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433325880470" ignored="false" />
     <file path="/movie.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1433372327103" ignored="false" />
-    <file path="/360kan_mv.xml" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435066784753" ignored="false" />
+    <file path="/360kan_mv.xml" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1435099297939" ignored="false" />
     <file path="/expand.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434960970364" ignored="false" />
     <file path="/test.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434667612288" ignored="false" />
     <file path="/dm.py" changelist="122a337a-b299-402f-a738-8f77b4320496" time="1434526266708" ignored="false" />
@@ -73,16 +73,25 @@
       <file leaf-file-name="360kan_mv.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_mv.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="82" selection-start="2093" selection-end="2093" vertical-scroll-proportion="0.0">
+            <state line="60" column="123" selection-start="2120" selection-end="2120" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="360kan_tv.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kan360/test/html/360kan_tv.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parser.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kan360/common/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="308" column="75" selection-start="10257" selection-end="10257" vertical-scroll-proportion="6.6666665">
+            <state line="167" column="25" selection-start="4274" selection-end="4274" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,19 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="360kan_tv.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="360kan_tv.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="101" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="360kan_zy.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_zy.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="77" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0">
+            <state line="51" column="73" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.44078946">
               <folding />
             </state>
           </provider>
@@ -160,14 +160,14 @@
         <option value="$PROJECT_DIR$/kan360/spiders/tv.py" />
         <option value="$PROJECT_DIR$/kan360/spiders/dm.py" />
         <option value="$PROJECT_DIR$/kan360/spiders/dmoz.py" />
-        <option value="$PROJECT_DIR$/kan360/websites/360kan_tv.xml" />
         <option value="$PROJECT_DIR$/kan360/websites/360kan_zy.xml" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/kan360/test/index.py" />
-        <option value="$PROJECT_DIR$/kan360/websites/360kan_mv.xml" />
         <option value="$PROJECT_DIR$/kan360/websites/360kan_dm.xml" />
         <option value="$PROJECT_DIR$/kan360/test/html/360kan_mv.html" />
         <option value="$PROJECT_DIR$/kan360/common/parser.py" />
+        <option value="$PROJECT_DIR$/kan360/websites/360kan_mv.xml" />
+        <option value="$PROJECT_DIR$/kan360/websites/360kan_tv.xml" />
       </list>
     </option>
   </component>
@@ -632,20 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="101" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_mv.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="82" selection-start="2093" selection-end="2093" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_dm.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="99" selection-start="1357" selection-end="1357" vertical-scroll-proportion="79.04">
@@ -669,7 +655,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kan360/common/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="308" column="75" selection-start="10257" selection-end="10257" vertical-scroll-proportion="6.6666665">
+        <state line="167" column="25" selection-start="4274" selection-end="4274" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_mv.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="123" selection-start="2120" selection-end="2120" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kan360/test/html/360kan_tv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kan360/websites/360kan_tv.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="73" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.44078946">
           <folding />
         </state>
       </provider>
