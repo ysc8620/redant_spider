@@ -4,8 +4,9 @@ echo $basepath
 cd $basepath
 for file in `ls $basepath/kan360/websites/*.xml`
 do
- echo $(basename "${file%%.*}")
- #sleep 5m
+ name = $(basename "${file%%.*}")
+ scrapy crawl dmoz -a name=$name
+ sleep 5m
 done
 #scrapy crawl dmoz -a n=imobshop.xml > /soft/py.log
 #sleep 5m
