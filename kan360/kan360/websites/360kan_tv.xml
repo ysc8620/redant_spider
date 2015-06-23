@@ -49,7 +49,7 @@
 			-->
             <rule rule="http://www.360kan.com/$"/>
             <rule rule="/dianshi/(\w+).html$" />
-            <rule rule="/dianshi/list.php((\?|&amp;)(cat=(all|\d+)|year=(other|all|\d+)|pageno=[1-3]+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$" />
+            <rule rule="/dianshi/list.php((\?|&amp;)(cat=(all|\d+)|year=(other|all|\d+)|pageno=\d+|area=(\d+|all)|act=all|rank=(createtime|rankpoint))){0,6}$" />
             <!--<rule rule="/dianshi/list.php((\?|&amp;)(cat=all|year=all|pageno=[1-3]+|area=all|act=[%\w]+)){0,6}$" />-->
 
             <!--<rule rule="/gene/tv.php((\?|&)(kw=[%\w]+|pageno=\d+)){0,3}$" />-->
@@ -95,7 +95,7 @@
                     -->
                     <sqlfields>
                         <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,watch_str,film_time,url,jump_url,play_type,content,status,addtime,uptime"
-                                update="uptime,jump_url,is_finish,update_remark,play_type"/>
+                                update="jump_url,is_finish,update_remark,play_type"/>
                     </sqlfields>
 					<!--
 					  | 属性的配置
