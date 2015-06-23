@@ -257,7 +257,7 @@ class parser:
                             _this = eval(rep[0])
                         except Exception, e:
                             print rep[0],_this
-                            logs(time.strftime("------%Y-%m-%d %H:%M:%S") + rep[0]+ ' rep eval error.' + e.message)
+                            logs(time.strftime("------%Y-%m-%d %H:%M:%S") +name+'='+ rep[0]+ ' rep eval error.' + e.message)
                 if item['rowItem'].has_key(name) == False:
                     item['rowItem'][name] = _this
                 else:
@@ -306,7 +306,7 @@ class parser:
                         data = eval(parser)
                         item['rowItem'][name] = data
                 except Exception, e:
-                    logs(time.strftime("------%Y-%m-%d %H:%M:%S")+' afterParser rep eval error.' + e.message)
+                    logs(time.strftime("------%Y-%m-%d %H:%M:%S")+name+'=' +' afterParser rep eval error.' + e.message)
                     print e
         return item
 
