@@ -263,6 +263,10 @@ class parser:
                 else:
                     if len(item['rowItem'][name]) < 1:
                         item['rowItem'][name] = _this
+
+                    if len(_this)>0:
+                        item['rowItem'][name] = _this
+
         if item['rowItem'].has_key('url') == False:
             item['rowItem']['url'] = self.url
         bool = False

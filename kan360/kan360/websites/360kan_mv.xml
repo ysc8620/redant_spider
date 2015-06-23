@@ -107,7 +107,7 @@
 					  | name:属性名称
 					  | parser:针对该属性的解析规则
 					-->
-					<field name="title" def="">
+					<field name="title" isTrim="1">
 						<!--
 						  | xpath: XPath规则，如果目标页面是XML，则可以使用2.0语法，否则HTML的话暂时只能1.0
 						  | attribute:当使用XPath解析后的内容不是文本而是一个Node节点对象的时候，可以给定一个属性名获取其属性值例如<img src="" />
