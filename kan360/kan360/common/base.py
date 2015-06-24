@@ -47,16 +47,16 @@ def get_seo_title(str):
 
 def logs(log):
     print log
-    file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+    file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\n")
 
 def runlogs(log):
     print log
-    file("./run.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+    file("./run.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\n")
 
 def urllogs(log):
     print log
-    file("./url.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+    file("./url.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\n")
 
 def infourllogs(log):
     print log
-    file("./infourl.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\r")
+    file("./infourl.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\n")
