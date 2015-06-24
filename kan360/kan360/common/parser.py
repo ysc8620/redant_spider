@@ -283,11 +283,12 @@ class parser:
                 if item['rowItem']['url']:
                     #bool = True
                     ## website_id=%s AND
-                    row = DB.init().getOne("SELECT id,url FROM js_vods WHERE url=%s", [item['rowItem']['url']])
+                    row = DB.init().getOne("SELECT id,url,pic FROM js_vods WHERE url=%s", [item['rowItem']['url']])
                     if row != False:
                         item['rowItem']['exits_item'] = row
 
-        if row == False and item['rowItem'].has_key('old_pic'):
+        if (row == False and item['rowItem'].has_key('old_pic')) \
+                or ( row != False and row['pic'] == '' and item['rowItem'].has_key('old_pic')):
             if item['rowItem']['old_pic']:
                 if type(item['rowItem']['old_pic']) == list:
                     item['image_urls'] = item['rowItem']['old_pic']
