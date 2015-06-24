@@ -46,7 +46,7 @@
 			-->
             <rule rule="http://www.360kan.com/?$"/>
             <rule rule="/dongman/(\w+).html$" />
-            <rule rule="/dongman/list.php((\?|&amp;)(cat=(all|\d+)|year=(other|all|\d+)|pageno=[1-2]+|area=(\d+|all)|act=|rank=(rankhot|pub))){0,6}$" />
+            <rule rule="/dongman/list.php((\?|&amp;)(cat=(all|\d+)|year=(all)|pageno=[1-2]+|area=(all)|act=|rank=(rankhot|pub))){0,6}$" />
             <rule rule="/ct/(\w+).html$" callback="parse_item" />
 		</queueRules>
 		<!--
@@ -90,6 +90,7 @@
                         <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,film_time,url,jump_url,play_type,content,status,addtime"
                                 update="jump_url,is_finish,update_remark,play_type"/>
                     </sqlfields>
+
 					<!--
 					  | 属性的配置
 					  | name:属性名称

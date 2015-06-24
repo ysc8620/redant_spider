@@ -52,7 +52,7 @@
 			  | value:值
 			-->
             <rule rule="http://www.360kan.com/$"/>
-            <rule rule="/top/detail/((\?|&amp;)(postype=\d+|toptype=\d+|topname=\d+)){0,3}$" />
+            <!--<rule rule="/top/detail/((\?|&amp;)(postype=\d+|toptype=\d+|topname=\d+)){0,3}$" />-->
             <!--<rule rule="/topic/\w+.html$" />-->
             <!--<rule rule="/gene/list.php((\?|&amp;)(kw=[%\w]+|pageno=\d+)){0,2}$" />-->
             <!--<rule rule="/gene/mlist.php((\?|&amp;)(kw=[%\w]+|pageno=\d+)){0,2}$" />-->
