@@ -47,8 +47,8 @@
 			-->
             <rule rule="http://www.360kan.com/$"/>
             <rule rule="/zongyi/(\w+).html$" />
-            <rule rule="/zongyi/list.php((\?|&amp;)(cat=(all|\d+)|pageno=[1-2]+|area=(all)|year=|act=|rank=(rankhot|pub))){0,6}$" />
-            <!--<rule rule="/zongyi/list.php((\?|&amp;)(cat=all|year=|pageno=[1-2]+|area=all|act=[%\w]+)){0,4}$" />-->
+            <rule rule="/zongyi/list.php((\?|&amp;)(cat=(all|\d+)|pageno=\d+|area=(all|\d+)|year=(all|\d+)|act=|rank=(rankhot|pub))){0,6}$" />
+            <rule rule="/zongyi/list.php((\?|&amp;)(cat=all|year=|pageno=\d+|area=all|act=[%\w]+)){0,4}$" />
             <rule rule="/va/(\w+).html$" callback="parse_item" />
 		</queueRules>
 		<!--
@@ -199,6 +199,7 @@
                         <parsers>
                             <parser xpath="//div[@id='listing']//div[contains(@class,'single')]//a/@class" />
                             <parser rep="_this.replace('gico-site','').replace('gico-','')" />
+
                         </parsers>
                     </field>
 					<field name="content" isTrim="1">

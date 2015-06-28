@@ -212,6 +212,9 @@ class parser:
                 else:
                     item['rowItem'][name] = define[0].strip()
                     _this = define[0].strip()
+            if item['rowItem'].has_key(name):
+                if len(item['rowItem'][name])>1:
+                    continue
 
             if isArray:
                 if item['rowItem'].has_key(name) != True:
@@ -309,6 +312,7 @@ class parser:
                 except Exception, e:
                     logs(time.strftime("------%Y-%m-%d %H:%M:%S")+name+'=' +' afterParser rep eval error.' + e.message)
                     print e
+        #print item
         return item
 
     def run(self, spider=None, response=None, xml=None, text=None):

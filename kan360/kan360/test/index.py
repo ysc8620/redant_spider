@@ -6,8 +6,11 @@ from kan360.common.db import *
 from scrapy.selector import Selector
 from kan360.common.parser import *
 from kan360.common.db import *
+from kan360.common.pjson import *
 reload(sys)
 sys.setdefaultencoding('utf8')
+
+
 
 domain = '360kan_mv'
 html = file(sys.path[0]+'/html/'+domain+'.html', 'a+').read()
@@ -27,7 +30,9 @@ for i in items['rowItem']:
          items['rowItem'][i] = items['rowItem'][i].encode('utf-8')
 
 
-print items
+d = MyEncoder().encode(items)
+print d
+
 # if item['rowItem']:
 #     if item['goods']['price'] != item['price'] or item['goods']['original_price'] != item['originalPrice'] or item['goods']['name'] != item['name']:
 #         DB.init().update("UPDATE le_goods SET isshow=1,name=%s,price=%s,original_price=%s, uptime=%s,expiry_time=%s,site_id=%s,cate_id=%s WHERE goods_id=%s",[item['name'],item['price'],item['originalPrice'],int(time.time()),item['ExpiryTime'], item['site_id'],goods_cate_id,item['goods']['goods_id']])

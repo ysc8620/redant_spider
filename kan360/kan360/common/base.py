@@ -45,6 +45,21 @@ def get_seo_title(str):
     str = (str if len(str)  > 2 else 'details') # len(str) < 2 ? str : 'details'
     return str.strip('-')
 
+# 读写json数据
+def jdata(f, data=None):
+    if data == None:
+        if os.path.exists(f) == False:
+            return ''
+        else:
+            return file(f, 'r').read()
+    else:
+        dir = os.path.dirname(f)
+        if os.path.exists(dir) == False:
+            os.makedirs(dir)
+        file(f,"w").write(data)
+        return True
+
+
 def logs(log):
     print log
     file("./error.log","a+").write(time.strftime("------%Y-%d-%d %H:%M:%S ") + " " +log+"\n")
