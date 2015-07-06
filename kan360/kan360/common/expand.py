@@ -158,8 +158,9 @@ def parse_zy(pay_type,url):
     if rs:
         id = rs.group(1)
     else:
-         ''
-    id = 'YcQla6dv7JM8Dz'
+        id = ''
+        return {'jump_url':'', 'jump_info':''}
+    #id = 'ZsMmcKZv7ZMBDD'
     #http://www.360kan.com/va/YcQla6dv7JM8Dz.html
     # http://www.360kan.com/cover/zongyilist?id=asYra6Nw7Jc7Ez&do=showpage&site=sohu&pageno=2
     ret = {'jump_url':'', 'jump_info':''}
@@ -189,7 +190,8 @@ def parse_zy(pay_type,url):
                 ret = zy(djson, ret)
 
                 if pages > 1:
-                    for page in range(2,pages):
+                    max = pages+1
+                    for page in range(2,max):
                         url = "http://www.360kan.com/cover/zongyilist?id="+id+"&do=showpage&site="+site.strip()+"&pageno="+str(page)
                         print url
                         f = urllib2.urlopen(url)
