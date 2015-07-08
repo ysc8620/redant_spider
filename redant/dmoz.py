@@ -1,5 +1,6 @@
 __author__ = 'ShengYue'
 import sys,os,re
+from common.db import *
 from w3lib.encoding import html_to_unicode
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -42,6 +43,8 @@ class myspider:
                     if i[0] == '/':
                         i = 'http://www.360kan.com'+i
                     #print i
+                    row = DB.init().getOne("SELECT id,url,pic FROM js_vods WHERE url=%s", [i])
+                    print row
                     if "/va/" in i:
                         zy = zy - 0.001
                         print 'zy:', zy, ' ', i
