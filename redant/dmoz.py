@@ -1,5 +1,5 @@
 __author__ = 'ShengYue'
-import sys,os,re
+import sys,os,re,datetime
 from common.db import *
 from w3lib.encoding import html_to_unicode
 reload(sys)
@@ -37,25 +37,30 @@ class myspider:
             data = splider.read(i)
             html =  self.p(data.strip(),i)
             links = html.xpath("//a/@href")
+            dt = datetime.now()
+            d = dt.strftime( '%Y-%m-%d %H:%M' )
             for i in links:
                 m = re.search(r'(http://www.360kan.com)?/(ct|va|m|tv)/(\w+).html', i)
                 if m :
                     if i[0] == '/':
                         i = 'http://www.360kan.com'+i
-                    #print i
-                    row = DB.init().getOne("SELECT id,url,pic FROM js_vods WHERE url=%s", [i])
-                    print row
+
+                    #print row
                     if "/va/" in i:
                         zy = zy - 0.001
+                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [zy,d,i])
                         print 'zy:', zy, ' ', i
                     if "/m/" in i:
                         dy = dy - 0.001
+                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [dy,d,i])
                         print 'm: ', dy, ' ', i
                     if "/tv/" in i:
                         tv = tv - 0.001
+                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [tv,d,i])
                         print 'tv: ', tv, ' ', i
                     if "/ct/" in i:
                         dm = dm - 0.001
+                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [dm,d,i])
                         print 'dm: ', dm, ' ', i
 
 if __name__=='__main__':
