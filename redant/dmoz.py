@@ -1,5 +1,6 @@
 __author__ = 'ShengYue'
-import sys,os,re,datetime
+import sys,os,re
+from datetime import *
 from common.db import *
 from w3lib.encoding import html_to_unicode
 reload(sys)
@@ -39,6 +40,7 @@ class myspider:
             links = html.xpath("//a/@href")
             dt = datetime.now()
             d = dt.strftime( '%Y-%m-%d %H:%M' )
+    
             for i in links:
                 m = re.search(r'(http://www.360kan.com)?/(ct|va|m|tv)/(\w+).html', i)
                 if m :
