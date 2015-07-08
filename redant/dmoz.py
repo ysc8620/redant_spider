@@ -40,7 +40,7 @@ class myspider:
             links = html.xpath("//a/@href")
             dt = datetime.now()
             d = dt.strftime( '%Y-%m-%d %H:%M' )
-    
+
             for i in links:
                 m = re.search(r'(http://www.360kan.com)?/(ct|va|m|tv)/(\w+).html', i)
                 if m :
@@ -50,20 +50,24 @@ class myspider:
                     #print row
                     if "/va/" in i:
                         zy = zy - 0.001
-                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [zy,d,i])
-                        print 'zy:', zy, ' ', i
+                        print 'zy:', zy,' date:',d, ' url:', i
+                        row = DB.init().update("UPDATE js_vod SET sort=%s, 	vod_uptime=%s WHERE vod_reurl=%s", [zy,d,i])
+                        #print 'zy:', zy, ' ', i
                     if "/m/" in i:
                         dy = dy - 0.001
-                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [dy,d,i])
-                        print 'm: ', dy, ' ', i
+                        print 'm: ', dy, ' date:',d, ' url:', i
+                        row = DB.init().update("UPDATE js_vod SET sort=%s, 	vod_uptime=%s WHERE vod_reurl=%s", [dy,d,i])
+
                     if "/tv/" in i:
                         tv = tv - 0.001
-                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [tv,d,i])
-                        print 'tv: ', tv, ' ', i
+                        print 'tv: ', tv, ' date:',d, ' url:',
+                        row = DB.init().update("UPDATE js_vod SET sort=%s, 	vod_uptime=%s WHERE vod_reurl=%s", [tv,d,i])
+
                     if "/ct/" in i:
                         dm = dm - 0.001
-                        row = DB.init().update("UPDATE js_vods SET `sort`=%s, vod_update=% WHERE url=%s", [dm,d,i])
-                        print 'dm: ', dm, ' ', i
+                        print 'dm: ', dm,' date:',d, ' url:', i
+                        row = DB.init().update("UPDATE js_vod SET sort=%s, 	vod_uptime=%s WHERE vod_reurl=%s" ,[dm,d,i])
+
 
 if __name__=='__main__':
     d = myspider()
