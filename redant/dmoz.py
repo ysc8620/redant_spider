@@ -11,9 +11,9 @@ class myspider:
     allow_url = []
     def __init__(self):
         self.allow_url = [
-            'http://www.360kan.com/',
-             'http://www.360kan.com/dianying/index.html',
-             'http://www.360kan.com/dianshi/index.html',
+            # 'http://www.360kan.com/',
+            #  'http://www.360kan.com/dianying/index.html',
+            #  'http://www.360kan.com/dianshi/index.html',
              'http://www.360kan.com/dongman/index.html',
              'http://www.360kan.com/zongyi/index.html',
         ]
