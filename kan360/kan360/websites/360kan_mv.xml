@@ -57,7 +57,7 @@
             <!--<rule rule="/gene/list.php((\?|&amp;)(kw=[%\w]+|pageno=\d+)){0,2}$" />-->
             <!--<rule rule="/gene/mlist.php((\?|&amp;)(kw=[%\w]+|pageno=\d+)){0,2}$" />-->
             <rule rule="/dianying/(\w+).html$" />
-            <rule rule="/dianying/list.php((\?|&amp;)(cat=(all|\d+)|year=all|area=all|act=all)){0,4}$" />
+            <rule rule="/dianying/list.php((\?|&amp;)(cat=(all|\d+)|pageno=[1-3]|rank=(createtime|rankpoint)|year=all|area=all|act=all)){0,5}$" />
             <!--<rule rule="/dianying/list.php((\?|&amp;)(cat=all|year=all|pageno=[1-2]+|area=all|act=[%\w]+)){0,6}$" />-->
             <rule rule="/m/(\w+).html$" callback="parse_item" />
 		</queueRules>

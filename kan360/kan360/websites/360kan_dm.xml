@@ -46,7 +46,7 @@
 			-->
             <rule rule="http://www.360kan.com/?$"/>
             <rule rule="/dongman/(\w+).html$" />
-            <rule rule="/dongman/list.php((\?|&amp;)(cat=(all|\d+)|year=all|area=all|act=all)){0,4}$" />
+            <rule rule="/dongman/list.php((\?|&amp;)(cat=(all|\d+)|pageno=[1-3]|year=all|area=all|rank=(rankhot|pub)|act=all)){0,6}$" />
             <rule rule="/ct/(\w+).html$" callback="parse_item" />
 		</queueRules>
 		<!--
