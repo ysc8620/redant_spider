@@ -57,9 +57,9 @@ class DB(object):
             #     self.conn = MySQLdb.connect(user='24a',db='myilovedeals',passwd='24abcdef',host='localhost',unix_socket='/tmp/mysql.sock')#,unix_socket='/tmp/mysql.sock'
             # elif self.db == 'test':
             try:
-                DB.__pool = MySQLdb.connect(user = 'root',db='jisucms',passwd = 'maikongjian',host='localhost',unix_socket='/tmp/mysql.sock')
+                DB.__pool = MySQLdb.connect(user = 'root',db='jisucms',passwd = 'LEsc2008',host='localhost',unix_socket='/tmp/mysql.sock')
             except Exception,e:
-                DB.__pool = MySQLdb.connect(user = 'root',db='jisucms',passwd = 'maikongjian',host='localhost')
+                DB.__pool = MySQLdb.connect(user = 'root',db='jisucms',passwd = 'LEsc2008',host='localhost')
 
         return DB.__pool
 
@@ -149,10 +149,12 @@ class DB(object):
         return result[0]['id']
 
     def __query(self,sql,param=None):
+
         if param is None:
             count = self._cursor.execute(sql)
         else:
             count = self._cursor.execute(sql,param)
+
         return count
 
     def update(self,sql,param=None):
