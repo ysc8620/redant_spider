@@ -55,16 +55,17 @@ class BasePipeline(object):
 
         if item['rowItem'].has_key('exits_item'):
             if item['rowItem']['exits_item'] != False:
-                update_sql = "UPDATE js_vods SET "
-                update_data = []
-                for i in updatesql_fields:
-                    if item['rowItem'].has_key(i):
-                        update_sql += i + "=%s ,";
-                        update_data.append(item['rowItem'][i])
-                update_sql = update_sql.strip(',') + " WHERE id=%s"
-                update_data.append(item['rowItem']['exits_item']['id'])
+                if item['rowItem']['exits_item']['lens'] < item['rowItem']['jump_url'] - 10:
+                    update_sql = "UPDATE js_vods SET "
+                    update_data = []
+                    for i in updatesql_fields:
+                        if item['rowItem'].has_key(i):
+                            update_sql += i + "=%s ,";
+                            update_data.append(item['rowItem'][i])
+                    update_sql = update_sql.strip(',') + " WHERE id=%s"
+                    update_data.append(item['rowItem']['exits_item']['id'])
 
-                DB.init().update(update_sql, update_data)
+                    DB.init().update(update_sql, update_data)
             else:
                 DB.init().insertOne(sql,data)
         else:
