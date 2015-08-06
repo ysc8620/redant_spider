@@ -55,7 +55,7 @@ class BasePipeline(object):
 
         if item['rowItem'].has_key('exits_item'):
             if item['rowItem']['exits_item'] != False:
-                if item['rowItem']['exits_item']['lens'] < item['rowItem']['jump_url'] - 10:
+                if item['rowItem']['exits_item']['lens'] < len(item['rowItem']['jump_url']) - 10:
                     update_sql = "UPDATE js_vods SET "
                     update_data = []
                     for i in updatesql_fields:
