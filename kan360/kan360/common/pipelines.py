@@ -70,6 +70,6 @@ class BasePipeline(object):
                 DB.init().insertOne(sql,data)
         else:
             DB.init().insertOne(sql,data)
-        print item
+        #print item
         return item
 
