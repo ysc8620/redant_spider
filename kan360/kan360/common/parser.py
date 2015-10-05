@@ -290,13 +290,13 @@ class parser:
                     if row != False:
                         item['rowItem']['exits_item'] = row
 
-        if (row == False and item['rowItem'].has_key('old_pic')) \
-                or ( row != False and row['pic'] == '' and item['rowItem'].has_key('old_pic')):
-            if item['rowItem']['old_pic']:
-                if type(item['rowItem']['old_pic']) == list:
-                    item['image_urls'] = item['rowItem']['old_pic']
-                elif type(item['rowItem']['old_pic']) == str or type(item['rowItem']['old_pic']) == unicode:
-                    item['image_urls'] = [item['rowItem']['old_pic']]
+        # if (row == False and item['rowItem'].has_key('old_pic')) \
+        #         or ( row != False and row['pic'] == '' and item['rowItem'].has_key('old_pic')):
+        #     if item['rowItem']['old_pic']:
+        #         if type(item['rowItem']['old_pic']) == list:
+        #             item['image_urls'] = item['rowItem']['old_pic']
+        #         elif type(item['rowItem']['old_pic']) == str or type(item['rowItem']['old_pic']) == unicode:
+        #             item['image_urls'] = [item['rowItem']['old_pic']]
 
         afterParser = xml.xpath("//afterParser/field")
 
