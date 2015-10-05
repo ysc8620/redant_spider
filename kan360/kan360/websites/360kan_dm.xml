@@ -87,8 +87,8 @@
                     !对应的值名
                     -->
                     <sqlfields>
-                        <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,film_time,url,jump_url,play_type,content,status,addtime"
-                                update="jump_url,is_finish,update_remark,play_type"/>
+                        <fields name="title,old_pic,website_id,site_id,cid_ids,uptime,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,update_remark,film_time,url,jump_url,play_type,content,status,addtime"
+                                update="jump_url,is_finish,update_remark,play_type,uptime"/>
                     </sqlfields>
 
 					<!--

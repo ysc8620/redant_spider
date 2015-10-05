@@ -100,7 +100,7 @@
                     -->
                     <sqlfields>
                         <fields name="title,old_pic,website_id,site_id,cid_ids,cid_name,class_ids,class_name,area,year,actor,director,gold,golder,is_finish,watch_str,film_time,url,jump_url,play_type,content,status,addtime,uptime"
-                                update="jump_url,is_finish,play_type"/>
+                                update="jump_url,is_finish,play_type,uptime"/>
                     </sqlfields>
 					<!--
 					  | 属性的配置

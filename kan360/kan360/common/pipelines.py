@@ -14,6 +14,7 @@ from kan360.common.db import DB
 from kan360.common.base import *
 from kan360.common.items import *
 from kan360.common.expand import *
+import time
 
 #
 '''
@@ -35,10 +36,12 @@ class BasePipeline(object):
             if item['rowItem']['is_exist_item'] == False:
                 return item
 
+        if item['rowItem']['title'] == '':
+            return item
+
         for i in item['rowItem']:
             if type(item['rowItem'][i]) == unicode or type(item['rowItem'][i]) == str:
                  item['rowItem'][i] = item['rowItem'][i].encode('utf-8')
-
         fields_id = item['rowItem']['sqlfields'].split(',')
         updatesql_fields = item['rowItem']['updatesqlfields'].split(',')
         sql = "INSERT INTO js_vods SET "
